@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.maj.gierka.MainActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="377dp"
+        android:layout_height="508dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/playBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="146dp"
+            android:background="@color/colorAccent"
+            android:alpha="0.5"
+            android:onClick="onClick"
+            android:text="Play"
+            android:visibility="visible"
+            tools:clickable="true"
+            tools:layout_editor_absoluteX="160dp"
+            tools:layout_editor_absoluteY="199dp" />
+
+        <Button
+            android:id="@+id/practiceBtn"
+            style="@android:style/Widget.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/playBtn"
+            android:layout_alignStart="@+id/playBtn"
+            android:layout_below="@+id/playBtn"
+            android:layout_marginTop="40dp"
+            android:text="Practice"
+            android:visibility="visible"
+            tools:layout_editor_absoluteX="160dp"
+            tools:layout_editor_absoluteY="277dp" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="190dp"
+            android:layout_height="118dp"
+            android:text="gierka"
+            android:textSize="36sp"
+            tools:layout_editor_absoluteX="101dp"
+            tools:layout_editor_absoluteY="51dp"
+            tools:text="Tytuł"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="71dp"
+            android:layout_marginEnd="71dp" />
+
+        <Button
+            android:id="@+id/setBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/practiceBtn"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/practiceBtn"
+            android:layout_marginBottom="72dp"
+            android:text="Settings"
+            android:visibility="invisible" />
+
+        <CheckBox
+            android:id="@+id/soundCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/practiceBtn"
+            android:layout_marginTop="23dp"
+            android:text="Sound"
+            android:layout_alignLeft="@+id/practiceBtn"
+            android:layout_alignStart="@+id/practiceBtn"
+            android:layout_alignRight="@+id/practiceBtn"
+            android:layout_alignEnd="@+id/practiceBtn" />
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="apptour">
+        <item>@drawable/monica_geller</item>
+        <item>@drawable/rachel_green</item>
+        <item>@drawable/phoebe_buffay</item>
+        <item>@drawable/ross_geller</item>
+    </array>
+
+</resources>
