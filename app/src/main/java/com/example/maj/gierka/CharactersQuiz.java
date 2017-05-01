@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Maj on 2017-04-17.
@@ -31,33 +33,50 @@ Context context;
 
     }
     public void genAnswers(){
+        String pattern = "\\/(\\w*)";
         ArrayList<String> arr = new ArrayList<>();
+        String modAnsw;
         imgs = context.getResources().obtainTypedArray(R.array.apptour);
         Random rand = new Random();
         int rndInt = rand.nextInt(imgs.length()-1);
         setResID(imgs.getResourceId(rndInt, 0));
         String name = context.getResources().getResourceName(getResID());
-        arr.add(name);
+     modAnsw = modifyAnsw(pattern, name);
+        arr.add(modAnsw);
         int answ2 = rand.nextInt(imgs.length()-1);
         if(answ2==rndInt) {
             while(answ2==rndInt) rand.nextInt(imgs.length()-1);
         }
-        arr.add(context.getResources().getResourceName(imgs.getResourceId(answ2, 0)));
+        //arr.add(context.getResources().getResourceName(imgs.getResourceId(answ2, 0)));
+        modAnsw = modifyAnsw(pattern, context.getResources().getResourceName(imgs.getResourceId(answ2, 0)));
+        arr.add(modAnsw);
         int answ3 = rand.nextInt(imgs.length()-1);
-        if(answ3==rndInt) {
-            if (answ3 == answ2) {
-                while (answ3 == rndInt) {
-                    while (answ3 == answ2)
-
+        if(answ3==rndInt || answ3 == answ2) {
+                while (answ3 == rndInt || answ3 == answ2) {
                         answ3 = rand.nextInt(imgs.length());
                 }
-            }
+
         }
-        arr.add(context.getResources().getResourceName(imgs.getResourceId(answ3, 0)));
+        //arr.add(context.getResources().getResourceName(imgs.getResourceId(answ3, 0)));
+        modAnsw = modifyAnsw(pattern, context.getResources().getResourceName(imgs.getResourceId(answ3, 0)));
+        arr.add(modAnsw);
         setAnswers(arr);
         //return getAnswers();
         System.out.println(getResID());
 
+    }
+    public String modifyAnsw(String pattern, String line){
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(line);
+        String answ = null;
+        if (m.find( )) {
+            System.out.println("Found value: " + m.group(1) );
+            answ = (m.group(1)).replace("_", " ");
+            //answ = m.group(1);
+        }else {
+            System.out.println("NO MATCH");
+        }
+return answ;
     }
 
     public int getResID() {
