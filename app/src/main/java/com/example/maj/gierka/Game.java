@@ -1,10 +1,15 @@
 package com.example.maj.gierka;
 
+import android.Manifest;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +29,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Game extends AppCompatActivity implements View.OnClickListener{
+    private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
+    private static final int REQUEST_ENABLE_BT = 1;
     private ImageView appImageView;
     private Button appButton;
     private Drawable drawable;
@@ -37,6 +44,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener{
     private String correct;
     private TextView countdown;
     private long time;
+    BluetoothAdapter mBluetoothAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +52,44 @@ public class Game extends AppCompatActivity implements View.OnClickListener{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_game);
+        //request bt
+      /**  mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mBluetoothAdapter == null) {
+            System.out.println("blad");
+        }
+        if (!mBluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        }**/
+
+
+        if (ContextCompat.checkSelfPermission(Game.this,
+                Manifest.permission.BLUETOOTH)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(Game.this,
+                    Manifest.permission.BLUETOOTH)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(Game.this,
+                        new String[]{Manifest.permission.BLUETOOTH},
+                        MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }
+
+
         countdown = (TextView) findViewById(R.id.textView2);
         appImageView = (ImageView) findViewById(R.id.imageView);
         drawables = new Drawable[]{
