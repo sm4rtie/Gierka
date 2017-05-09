@@ -90,7 +90,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener{
         }
 
 
-        countdown = (TextView) findViewById(R.id.textView2);
+        countdown = (TextView) findViewById(R.id.textView);
         appImageView = (ImageView) findViewById(R.id.imageView);
         drawables = new Drawable[]{
                 getResources().getDrawable(R.drawable.game_bg),
@@ -119,7 +119,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener{
         ans2.setText(answ.get(1));
         ans3 = (Button) findViewById(R.id.button3);
         ans3.setText(answ.get(2));
-
+        appImageView.setImageResource(nr);
         //timerek
 
         new CountDownTimer(11000, 1000) {
@@ -138,7 +138,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener{
         //int rndInt = rand.nextInt(3);
        // radioButton = (RadioButton) findViewById(R.id.radioButton);
        // radioButton.setText(answ.get(0));
-        appImageView.setImageResource(nr); // set the image to the ImageView
+         // set the image to the ImageView
     }
     public int checkAnsw(String answ){
         int point;

@@ -28,19 +28,34 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
     BluetoothAdapter mBluetoothAdapter;
     private static final int REQUEST_ENABLE_BT = 1;
     private static final int REQ_BT_ENABLE = 1;
+    public BluetoothAdapter getmBluetoothAdapter() {
+        return mBluetoothAdapter;
+    }
+
+    public void setmBluetoothAdapter(BluetoothAdapter mBluetoothAdapte) {
+        this.mBluetoothAdapter = mBluetoothAdapter;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth_discovery);
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+
         if (mBluetoothAdapter == null) {
             System.out.println("blad");
         }
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},MY_PERMISSION_REQUEST_CONSTANT);
+
         }
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},MY_PERMISSION_REQUEST_CONSTANT);
+      /**  Intent discoverableIntent =
+                new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+        discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+        startActivity(discoverableIntent);**/
+
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         registerReceiver(mReceiver, filter);
         filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
@@ -56,7 +71,7 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
    //     adapter = new ArrayAdapter<BluetoothDevice>(this,
    //             android.R.layout.simple_list_item_1, foundDevices);
         adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, foundDevices);
+                R.layout.list_white_text, foundDevices);
         foundDevicesListView.setAdapter(adapter);
         foundDevicesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -64,7 +79,7 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
 
                 String s = foundDevicesListView.getItemAtPosition(i).toString();
 
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
                 Intent ni=new Intent(getApplicationContext(),Game.class);
                 startActivity(ni);
                // adapter.dismiss(); // If you want to close the adapter
