@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -57,10 +58,23 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
         adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, foundDevices);
         foundDevicesListView.setAdapter(adapter);
+        foundDevicesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                String s = foundDevicesListView.getItemAtPosition(i).toString();
+
+                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+                Intent ni=new Intent(getApplicationContext(),Game.class);
+                startActivity(ni);
+               // adapter.dismiss(); // If you want to close the adapter
+            }
+        });
 
 
 
     }
+
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -95,6 +109,7 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
         // Don't forget to unregister the ACTION_FOUND receiver.
         unregisterReceiver(mReceiver);
     }
+
     @Override
     public void onClick(View view) {
         setContentView(R.layout.activity_game);
@@ -115,6 +130,7 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
             }
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 // TODO Auto-generated method stub
