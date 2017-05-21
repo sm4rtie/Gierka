@@ -4,11 +4,8 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,7 +13,9 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     ImageButton practiceBtn;
@@ -27,6 +26,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     RelativeLayout relativeLayout;
     CheckBox soundCheck;
 
+    //lista klas gier, potem trzeba podmienic z bluetoothem
+    ArrayList<Class> activities = new ArrayList<>();
+    private Class gp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         this.setContentView(R.layout.activity_main);
+
+        //test wybierania gierek
+        //new GamePicker().generateArrayGames();
+        gp = new GamePicker().getRandGame();
+
+        //dodawanie gier do listy, potem wywalic do klasy bt
+
+        //activities.add(Game.class);
+        activities.add(MyszActivity.class);
+
+
 
         relativeLayout = (RelativeLayout) findViewById(R.id.relative);
         practiceBtn = (ImageButton) findViewById(R.id.practiceBtn);
@@ -63,9 +77,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        setContentView(R.layout.activity_game);
+       // setContentView(R.layout.activity_game);
 
-        Intent i=new Intent(getApplicationContext(),BluetoothDiscovery.class);
+        Intent i=new Intent(getApplicationContext(),gp);
         startActivity(i);
+    }
+    public void openActivity(Class class_) {
+        Intent intent = new Intent(getApplicationContext(), class_);
+        startActivity(intent);
+    }
+
+    public void openRandomActivity(View view){
+
+        Class that = activities.get(new Random().nextInt(activities.size()));
+
+        activities.remove(that); // after using, remove from list
+
+        openActivity(that);
     }
 }

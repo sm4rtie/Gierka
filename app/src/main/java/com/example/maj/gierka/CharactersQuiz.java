@@ -28,19 +28,23 @@ Context context;
     public CharactersQuiz(Context context){
     super(context);
         this.context = context;
-        imgs = context.getResources().obtainTypedArray(R.array.apptour);
+        imgs = context.getResources().obtainTypedArray(R.array.characters);
 
 
     }
     public void genAnswers(){
+        //wydzielamy odpowiedz
         String pattern = "\\/(\\w*)";
         ArrayList<String> arr = new ArrayList<>();
         String modAnsw;
-        imgs = context.getResources().obtainTypedArray(R.array.apptour);
+        imgs = context.getResources().obtainTypedArray(R.array.characters);
         Random rand = new Random();
+        //losujemy obrazek
         int rndInt = rand.nextInt(imgs.length()-1);
         setResID(imgs.getResourceId(rndInt, 0));
+        //bierzemy nazwe obrazka
         String name = context.getResources().getResourceName(getResID());
+        //przerabiamy na odpowiedz na buttona
      modAnsw = modifyAnsw(pattern, name);
         arr.add(modAnsw);
         int answ2 = rand.nextInt(imgs.length()-1);
