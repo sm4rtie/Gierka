@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="characters">
+        <item>@drawable/monica_geller</item>
+        <item>@drawable/rachel_green</item>
+        <item>@drawable/phoebe_buffay</item>
+        <item>@drawable/ross_geller</item>
+    </array>
+    <array name="minki">
+        <item>@drawable/minki1_nie</item>
+        <item>@drawable/minki2_nie</item>
+        <item>@drawable/minki3_nie</item>
+        <item>@drawable/minki4_nie</item>
+        <item>@drawable/minki5_nie</item>
+        <item>@drawable/minki6_nie</item>
+        <item>@drawable/minki7_tak</item>
+        <item>@drawable/minki8_tak</item>
+        <item>@drawable/minki9_tak</item>
+        <item>@drawable/minki10_tak</item>
+    </array>
+    <array name="mysz_i_ser">
+        <item>@drawable/mysz1_nie</item>
+        <item>@drawable/mysz2_nie</item>
+        <item>@drawable/mysz3_nie</item>
+        <item>@drawable/mysz4_nie</item>
+        <item>@drawable/mysz5_nie</item>
+        <item>@drawable/mysz6_nie</item>
+        <item>@drawable/mysz7_tak</item>
+        <item>@drawable/mysz8_tak</item>
+    </array>
+    //<array name="kolka">
+        <item>@drawable/kolka1_tak</item>
+        <item>@drawable/kolka2_tak</item>
+        <item>@drawable/kolka3_tak</item>
+        <item>@drawable/kolka4_nie</item>
+        <item>@drawable/kolka5_nie</item>
+        <item>@drawable/kolka6_nie</item>
+    </array>
+</resources>
