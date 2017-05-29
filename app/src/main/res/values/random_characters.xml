@@ -28,6 +28,13 @@
         <item>@drawable/mysz6_nie</item>
         <item>@drawable/mysz7_tak</item>
         <item>@drawable/mysz8_tak</item>
-
+    </array>
+    //<array name="kolka">
+        <item>@drawable/kolka1_tak</item>
+        <item>@drawable/kolka2_tak</item>
+        <item>@drawable/kolka3_tak</item>
+        <item>@drawable/kolka4_nie</item>
+        <item>@drawable/kolka5_nie</item>
+        <item>@drawable/kolka6_nie</item>
     </array>
 </resources>
