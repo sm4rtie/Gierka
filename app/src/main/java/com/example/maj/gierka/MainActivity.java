@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //activities.add(Game.class);
         activities.add(MyszActivity.class);
+        activities.add(KolkaActivity.class);
 
 
 
