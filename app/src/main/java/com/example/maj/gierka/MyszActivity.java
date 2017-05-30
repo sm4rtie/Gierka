@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -24,6 +25,7 @@ public class MyszActivity extends AppCompatActivity implements View.OnClickListe
     private Class gp;
     CountDownTimer cTimer = null;
 private int point;
+     BluetoothConnectionService btc;
 
 
     @Override
@@ -36,7 +38,7 @@ private int point;
         gameBtn = (Button) findViewById(R.id.gameBtn);
         countdownTxt = (TextView) findViewById(R.id.countdownTxt);
         gameImage = (ImageView) findViewById(R.id.gameImg);
-
+        btc = new BluetoothConnectionService(getApplicationContext());
        /* Random rand = new Random();
         Mysz mysz = new Mysz(this);
         answer = mysz.generateQuestion();
@@ -54,6 +56,8 @@ private int point;
         //int point;
 
         if(answer.equalsIgnoreCase("tak")){
+            byte[] bytes ="1".getBytes(Charset.defaultCharset());
+            btc.write(bytes);
             point = 1;
             countdownTxt.setText("Punkt!");
             gp = new GamePicker().getRandGame();

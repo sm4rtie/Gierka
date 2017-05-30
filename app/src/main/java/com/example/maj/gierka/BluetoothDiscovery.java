@@ -1,6 +1,7 @@
 package com.example.maj.gierka;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -9,40 +10,47 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class BluetoothDiscovery extends AppCompatActivity implements View.OnClickListener{
     private static final int MY_PERMISSION_REQUEST_CONSTANT = 1;
-    protected ArrayList<String> foundDevices = new ArrayList<>();
+    protected ArrayList<BluetoothDevice> foundDevices = new ArrayList<>();
     private ListView foundDevicesListView;
-    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<BluetoothDevice> adapter;
     BluetoothAdapter mBluetoothAdapter;
     private static final int REQUEST_ENABLE_BT = 1;
     private static final int REQ_BT_ENABLE = 1;
     int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 1;
-    private Class gp;
     BluetoothSocket bluetoothSocket;
     private StringBuffer mOutStringBuffer;
-
+    private Class gp;
     private BluetoothDevice device;
     private BluetoothService mService = null;
-
-
+    BluetoothConnectionService mBluetoothConnection;
+    private static final UUID MY_UUID_INSECURE =
+            UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
+    private Button playBtn;
+    //@TargetApi(19)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        playBtn = (Button) findViewById(R.id.startGame);
         setContentView(R.layout.activity_bluetooth_discovery);
         gp = new GamePicker().getRandGame();
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -73,7 +81,7 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
         foundDevicesListView = (ListView) findViewById(R.id.foundDevicesListView);
 
 
-        adapter = new ArrayAdapter<String>(this,
+        adapter = new ArrayAdapter<BluetoothDevice>(this,
                 R.layout.list_white_text, foundDevices);
         foundDevicesListView.setAdapter(adapter);
         foundDevicesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -81,7 +89,17 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //String  itemValue = (String) foundDevicesListView.getItemAtPosition(i);
                 String s = foundDevicesListView.getItemAtPosition(i).toString();
-                connectDevice(true);
+              //  device = (BluetoothDevice) foundDevicesListView.getItemAtPosition(i);
+                device = (BluetoothDevice) foundDevicesListView.getItemAtPosition(i);
+                Boolean isBond;
+                if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) isBond = device.createBond();
+                mBluetoothConnection = new BluetoothConnectionService(getApplicationContext());
+                startConnection(); //BCS
+                //connectDevice(device, false);
+
+
+               // String mState = Constants.MESSAGE_DEVICE_NAME;
+               // if(BluetoothService.STATE_CONNECTING)startActivity(is);
                 //String MAC = foundDevicesListView.getItemAtPosition(i).
                // BluetoothDevice bluetoothDevice = mBluetoothAdapter.getRemoteDevice(MAC);
 
@@ -92,10 +110,22 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
         });
 
 
-        mService = new BluetoothService(getApplicationContext(), mHandler);
+       // mService = new BluetoothService(getApplicationContext(), mHandler);
 
     }
+//BCS
+    public void startConnection(){
+        startBTConnection(device,MY_UUID_INSECURE);
+    }
 
+    /**
+     * starting chat service method
+     */
+    public void startBTConnection(BluetoothDevice device, UUID uuid){
+        Log.d("MY_APP", "startBTConnection: Initializing RFCOM Bluetooth Connection.");
+
+        mBluetoothConnection.startClient(device,uuid);
+    }
 
     @Override
     protected void onDestroy() {
@@ -175,7 +205,7 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
                 String deviceHardwareAddress = device.getAddress(); // MAC address
 
                 if (!foundDevices.contains(device)) {
-                    foundDevices.add(device.getName());
+                    foundDevices.add(device);
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -189,13 +219,13 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
         }
     };
 
-    private void connectDevice(boolean secure){//Intent data, boolean secure) {
+    private void connectDevice(BluetoothDevice device, boolean secure){//Intent data, boolean secure) {
         // Get the device MAC address
         String address = device.getAddress();
         // Get the BluetoothDevice object
-        BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+        BluetoothDevice device2 = mBluetoothAdapter.getRemoteDevice(address);
         // Attempt to connect to the device
-        mService.connect(device, secure);
+        mService.connect(device2, secure);
     }
 
     private final Handler mHandler = new Handler() {

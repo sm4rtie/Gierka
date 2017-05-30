@@ -2,6 +2,7 @@ package com.example.maj.gierka;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -13,7 +14,9 @@ import android.widget.Toast;
 public class BluetoothExchangeData extends AppCompatActivity{
     private BluetoothService mService = null;
     private StringBuffer mOutStringBuffer;
+    Handler mHandler;
     private void sendMessage(String message) {
+        mService = new BluetoothService(getApplicationContext(), mHandler);
         // Check that we're actually connected before trying anything
         mOutStringBuffer = new StringBuffer("");
         if (mService.getState() != BluetoothService.STATE_CONNECTED) {

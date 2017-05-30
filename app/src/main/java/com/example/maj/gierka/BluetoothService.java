@@ -35,7 +35,7 @@ public class BluetoothService { //extends AppCompatActivity implements View.OnCl
 
         // Unique UUID for this application
         private static final UUID MY_UUID_SECURE =
-                UUID.fromString("fa87c0d0-afac-11de-8a39-0800200c9a66");
+                UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
         private static final UUID MY_UUID_INSECURE =
                 UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
 
@@ -54,7 +54,7 @@ public class BluetoothService { //extends AppCompatActivity implements View.OnCl
         public static final int STATE_LISTEN = 1;     // now listening for incoming connections
         public static final int STATE_CONNECTING = 2; // now initiating an outgoing connection
         public static final int STATE_CONNECTED = 3;  // now connected to a remote device
-
+        private int ifcon = 0;
         /**
          * Constructor. Prepares a new BluetoothChat session.
          *
@@ -78,6 +78,8 @@ public class BluetoothService { //extends AppCompatActivity implements View.OnCl
 
             // Give the new state to the Handler so the UI Activity can update
             mHandler.obtainMessage(Constants.MESSAGE_STATE_CHANGE, mNewState, -1).sendToTarget();
+            ifcon = 1;
+
         }
 
         /**
@@ -386,8 +388,13 @@ public class BluetoothService { //extends AppCompatActivity implements View.OnCl
                 // given BluetoothDevice
                 try {
                     if (secure) {
+                        try{
                         tmp = device.createRfcommSocketToServiceRecord(
-                                MY_UUID_SECURE);
+                                MY_UUID_SECURE); }
+                        catch (Exception e){tmp = device.createInsecureRfcommSocketToServiceRecord(
+                                MY_UUID_INSECURE);
+
+                        }
                     } else {
                         tmp = device.createInsecureRfcommSocketToServiceRecord(
                                 MY_UUID_INSECURE);
