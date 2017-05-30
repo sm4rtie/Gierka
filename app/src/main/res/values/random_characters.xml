@@ -29,12 +29,26 @@
         <item>@drawable/mysz7_tak</item>
         <item>@drawable/mysz8_tak</item>
     </array>
-    //<array name="kolka">
+    <array name="kolka">
         <item>@drawable/kolka1_tak</item>
         <item>@drawable/kolka2_tak</item>
         <item>@drawable/kolka3_tak</item>
         <item>@drawable/kolka4_nie</item>
         <item>@drawable/kolka5_nie</item>
         <item>@drawable/kolka6_nie</item>
+    </array>
+    <array name="minka">
+        <item>@drawable/minka1_tak</item>
+        <item>@drawable/minka2_nie</item>
+        <item>@drawable/minka3_nie</item>
+        <item>@drawable/minka4_tak</item>
+        <item>@drawable/minka5_tak</item>
+        <item>@drawable/minka6_nie</item>
+    </array>
+    <array name="alfabet">
+        <item>@drawable/alfabet1_tak</item>
+        <item>@drawable/alfabet2_nie</item>
+        <item>@drawable/alfabet3_nie</item>
+        <item>@drawable/alfabet4_nie</item>
     </array>
 </resources>
