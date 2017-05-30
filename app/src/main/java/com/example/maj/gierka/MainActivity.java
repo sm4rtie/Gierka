@@ -49,7 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //activities.add(Game.class);
         activities.add(MyszActivity.class);
         activities.add(KolkaActivity.class);
-
+        activities.add(MinkaActivity.class);
+        activities.add(AlfabetActivity.class);
 
 
         relativeLayout = (RelativeLayout) findViewById(R.id.relative);
