@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //test wybierania gierek
         //new GamePicker().generateArrayGames();
-        gp = new GamePicker().getRandGame();
+        //gp = new GamePicker().getRandGame();
 
         //dodawanie gier do listy, potem wywalic do klasy bt
 
@@ -79,9 +79,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
        // setContentView(R.layout.activity_game);
-
-        Intent i=new Intent(getApplicationContext(),gp);
-        startActivity(i);
+        openActivity(BluetoothDiscovery.class);
+        //Intent i=new Intent(getApplicationContext(),gp);
+        //startActivity(i);
     }
     public void openActivity(Class class_) {
         Intent intent = new Intent(getApplicationContext(), class_);
