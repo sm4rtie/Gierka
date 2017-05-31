@@ -23,7 +23,7 @@ public class MyszActivity extends AppCompatActivity implements View.OnClickListe
     private long time;
     private Class gp;
     CountDownTimer cTimer = null;
-private int point;
+    private int point;
 
 
     @Override

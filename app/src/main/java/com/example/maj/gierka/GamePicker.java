@@ -9,7 +9,7 @@ import java.util.Random;
  */
 
 public class GamePicker {
-    private static ArrayList<Class> activities = new ArrayList<Class>(Arrays.asList(MyszActivity.class, Game.class));
+    private static ArrayList<Class> activities = new ArrayList<Class>(Arrays.asList(MyszActivity.class, Game.class, MinkaActivity.class, KolkaActivity.class, AlfabetActivity.class));
     private static Class randGame;
     public GamePicker(){
 

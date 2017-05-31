@@ -24,6 +24,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Game" />
+        <activity android:name=".MyszActivity" />
+        <activity android:name=".MinkaActivity" />
+        <activity android:name=".KolkaActivity" />
+        <activity android:name=".AlfabetActivity" />
         <activity android:name=".BluetoothDiscovery"></activity>
     </application>
 
