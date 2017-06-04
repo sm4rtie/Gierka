@@ -30,7 +30,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class Game extends AppCompatActivity implements View.OnClickListener{
+public class Kolory extends AppCompatActivity implements View.OnClickListener{
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
     private static final int REQUEST_ENABLE_BT = 1;
     private ImageView appImageView;
@@ -55,7 +55,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener{
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_kolory_activity);
 
         countdownTxt = (TextView) findViewById(R.id.countdownTxt);
         countdownTxt.setGravity(Gravity.CENTER);
@@ -65,7 +65,7 @@ public class Game extends AppCompatActivity implements View.OnClickListener{
         anscheckTxt.setGravity(Gravity.CENTER);
         anscheckTxt.setTextSize(25);
         anscheckTxt.setTextColor(Color.WHITE);
-        appImageView = (ImageView) findViewById(R.id.imageView);
+        appImageView = (ImageView) findViewById(R.id.imageView2);
         drawables = new Drawable[]{
                 getResources().getDrawable(R.drawable.game_bg),
                 getResources().getDrawable(R.drawable.bgtest)
@@ -77,19 +77,19 @@ public class Game extends AppCompatActivity implements View.OnClickListener{
 
     private void setScreen(){
         if(tura<=answ.size()){
-        startTimer();
-       // startTimer2();
-        CharactersQuiz qz = (new CharactersQuiz(this));
-        qz.genAnswers();
-        int nr =  qz.getResID();
-        answ = qz.getAnswers();
-        correct = answ.get(0);
-        Collections.shuffle(answ);
-        correctAnsw = (Button) findViewById(R.id.button);
-        userAnswer = answ.get(new Random().nextInt(answ.size()));
-        correctAnsw.setText("Czy to " + userAnswer+"?");
-        appImageView.setImageResource(nr);
-        tura+=1; }
+            startTimer();
+            // startTimer2();
+            KoloryActivity qz = (new KoloryActivity(this));
+            qz.genAnswers();
+            int nr =  qz.getResID();
+            answ = qz.getAnswers();
+            correct = answ.get(0);
+            Collections.shuffle(answ);
+            correctAnsw = (Button) findViewById(R.id.button);
+            userAnswer = answ.get(new Random().nextInt(answ.size()));
+            correctAnsw.setText("Czy to kolor " + userAnswer+"?");
+            appImageView.setImageResource(nr);
+            tura+=1; }
         else {
             gp = new GamePicker().getRandGame();
             openActivity(gp);

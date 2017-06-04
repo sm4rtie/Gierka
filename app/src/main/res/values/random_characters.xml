@@ -7,7 +7,7 @@
         <item>@drawable/phoebe_buffay</item>
         <item>@drawable/ross_geller</item>
     </array>
-    <array name="minki">
+    <array name="lody">
         <item>@drawable/minki1_nie</item>
         <item>@drawable/minki2_nie</item>
         <item>@drawable/minki3_nie</item>
@@ -50,5 +50,29 @@
         <item>@drawable/alfabet2_nie</item>
         <item>@drawable/alfabet3_nie</item>
         <item>@drawable/alfabet4_nie</item>
+    </array>
+    <array name="kolory">
+        <item>@drawable/ecru</item>
+        <item>@drawable/fuksja</item>
+        <item>@drawable/karmazynowy</item>
+        <item>@drawable/malachitowy</item>
+        <item>@drawable/marengo</item>
+        <item>@drawable/lapis_lazuli</item>
+    </array>
+    <array name="rownania">
+        <item>@drawable/wynik1_nie</item>
+        <item>@drawable/wynik2_nie</item>
+        <item>@drawable/wynik3_nie</item>
+        <item>@drawable/wynik4_tak</item>
+        <item>@drawable/wynik5_tak</item>
+        <item>@drawable/wynik6_tak</item>
+    </array>
+    <array name="orto">
+        <item>@drawable/blad1_nie</item>
+        <item>@drawable/blad2_nie</item>
+        <item>@drawable/blad3_nie</item>
+        <item>@drawable/blad4_tak</item>
+        <item>@drawable/blad5_tak</item>
+        <item>@drawable/blad6_tak</item>
     </array>
 </resources>

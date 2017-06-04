@@ -26,39 +26,53 @@
 
     <Button
         android:id="@+id/gameBtn2"
-        android:layout_width="383dp"
-        android:layout_height="126dp"
+        android:layout_width="360dp"
+        android:layout_height="138dp"
         android:layout_marginBottom="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/mysz_przyciskgracz1"
+        android:background="@drawable/gamebutton"
         android:onClick="onClick"
+        android:text="Czy kółek jest więcej?"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gameImg"
-        app:layout_constraintVertical_bias="0.307" />
+        app:layout_constraintVertical_bias="0.307"
+        android:textSize="25sp"
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/countdownTxt"
-        android:layout_width="143dp"
-        android:layout_height="60dp"
+        android:layout_width="151dp"
+        android:layout_height="43dp"
         android:layout_marginBottom="19dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:layout_marginTop="33dp"
+        android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/gameImg"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        tools:textColor="@color/white"
-        android:textColor="@color/white"
-        app:layout_constraintHorizontal_bias="0.502" />
+        tools:textColor="@color/white" />
 
+    <TextView
+        android:id="@+id/anscheckTxt"
+        android:layout_width="135dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="33dp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintHorizontal_bias="0.034"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

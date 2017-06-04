@@ -2,9 +2,11 @@ package com.example.maj.gierka;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,13 +20,14 @@ import java.util.Random;
 public class KolkaActivity extends AppCompatActivity implements View.OnClickListener{
     private Button gameBtn2;
     private TextView countdownTxt;
+    private TextView anscheckTxt;
     private ImageView gameImage;
     private String answer;
     private long time;
     private Class gp;
     CountDownTimer cTimer = null;
     private int point;
-
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,45 +36,34 @@ public class KolkaActivity extends AppCompatActivity implements View.OnClickList
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_kolka_activity);
+
         gameBtn2 = (Button) findViewById(R.id.gameBtn2);
         countdownTxt = (TextView) findViewById(R.id.countdownTxt);
+        countdownTxt.setGravity(Gravity.CENTER);
+        anscheckTxt = (TextView) findViewById(R.id.anscheckTxt);
+        anscheckTxt.setGravity(Gravity.CENTER);
         gameImage = (ImageView) findViewById(R.id.gameImg2);
-
-       /* Random rand = new Random();
-        Mysz mysz = new Mysz(this);
-        answer = mysz.generateQuestion();
-        int nr =  mysz.getResID();
-        //answer = mysz.getAnswer();
-
-        gameImage.setImageResource(nr);*/
         setScreen();
-
-
-
-
     }
+
     public int checkAnsw(){
         //int point;
-
         if(answer.equalsIgnoreCase("tak")){
             point = 1;
-            countdownTxt.setText("Punkt!");
+            anscheckTxt.setText("Punkt!");
             gp = new GamePicker().getRandGame();
             openActivity(gp);
-        }
-
-        else {
+        } else {
             point=0;
-            countdownTxt.setText("Zle!");
+            anscheckTxt.setText("Źle!");
             setScreen();
 
         }
-
         return point;
     }
+
     @Override
     public void onClick(View view) {
-        //String buttonText = (String)((Button)view).getText().toString();
         cancelTimer();
         checkAnsw();
     }
@@ -80,37 +72,21 @@ public class KolkaActivity extends AppCompatActivity implements View.OnClickList
         startActivity(intent);
     }
     public void setScreen(){
-        /** new CountDownTimer(11000, 1000) {
-
-         public void onTick(long millisUntilFinished) {
-         countdownTxt.setText(" " + millisUntilFinished / 1000);
-         time = 11000 - millisUntilFinished;
-
-         }
-
-
-         public void onFinish() {
-         //countdownTxt.setText("done!");
-         setScreen();
-         }
-         }.start();**/
         startTimer();
         Random rand = new Random();
         Kolka kolka = new Kolka(this);
         answer = kolka.generateQuestion();
         int nr =  kolka.getResID();
-        //answer = mysz.getAnswer();
-
         gameImage.setImageResource(nr);
-
     }
+
     void startTimer() {
-        cTimer = new CountDownTimer(11000, 1000) {
+        cTimer = new CountDownTimer(6000, 1000) {
             public void onTick(long millisUntilFinished) {
                 countdownTxt.setText(" " + millisUntilFinished / 1000);
-                time = 11000 - millisUntilFinished;
-
+                time = 6000 - millisUntilFinished;
             }
+
             public void onFinish() {
                 cancelTimer();
                 setScreen();
@@ -119,19 +95,9 @@ public class KolkaActivity extends AppCompatActivity implements View.OnClickList
         cTimer.start();
     }
 
-
     //cancel timer
     void cancelTimer() {
         if(cTimer!=null)
             cTimer.cancel();
     }
-
-  /*  public void openRandomActivity(){
-
-        Class that = activities.get(new Random().nextInt(activities.size()));
-
-        activities.remove(that); // after using, remove from list
-
-        openActivity(that);
-    }*/
 }

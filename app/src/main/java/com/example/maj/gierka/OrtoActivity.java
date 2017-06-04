@@ -16,8 +16,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MyszActivity extends AppCompatActivity implements View.OnClickListener{
-    private Button gameBtn;
+public class OrtoActivity extends AppCompatActivity implements View.OnClickListener{
+    private Button gameBtn7;
     private TextView countdownTxt;
     private TextView anscheckTxt;
     private ImageView gameImage;
@@ -27,21 +27,26 @@ public class MyszActivity extends AppCompatActivity implements View.OnClickListe
     CountDownTimer cTimer = null;
     private int point;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_mysz_activity);
+        setContentView(R.layout.activity_orto_activity);
 
-        gameBtn = (Button) findViewById(R.id.gameBtn);
+        gameBtn7 = (Button) findViewById(R.id.gameBtn7);
         countdownTxt = (TextView) findViewById(R.id.countdownTxt);
         countdownTxt.setGravity(Gravity.CENTER);
         anscheckTxt = (TextView) findViewById(R.id.anscheckTxt);
         anscheckTxt.setGravity(Gravity.CENTER);
-        gameImage = (ImageView) findViewById(R.id.gameImg);
-       setScreen();
+        gameImage = (ImageView) findViewById(R.id.gameImg7);
+        setScreen();
+
+
+
+
     }
     public int checkAnsw(){
         //int point;
@@ -54,6 +59,7 @@ public class MyszActivity extends AppCompatActivity implements View.OnClickListe
             point=0;
             anscheckTxt.setText("Źle!");
             setScreen();
+
         }
         return point;
     }
@@ -70,11 +76,11 @@ public class MyszActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void setScreen(){
-       startTimer();
+        startTimer();
         Random rand = new Random();
-        Mysz mysz = new Mysz(this);
-        answer = mysz.generateQuestion();
-        int nr =  mysz.getResID();
+        Orto orto = new Orto(this);
+        answer = orto.generateQuestion();
+        int nr =  orto.getResID();
         gameImage.setImageResource(nr);
     }
 
@@ -83,8 +89,8 @@ public class MyszActivity extends AppCompatActivity implements View.OnClickListe
             public void onTick(long millisUntilFinished) {
                 countdownTxt.setText(" " + millisUntilFinished / 1000);
                 time = 6000 - millisUntilFinished;
-
             }
+
             public void onFinish() {
                 cancelTimer();
                 setScreen();

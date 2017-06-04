@@ -11,33 +11,37 @@
     <RelativeLayout
         android:id="@+id/relative"
         android:layout_width="368dp"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:background="@drawable/tlomenu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="parent">
 
         <ImageButton
             android:id="@+id/playBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            app:srcCompat="@drawable/playbutton1"
-            android:onClick="onClick"
-            android:background="@null"
             android:layout_above="@+id/optionsBtn"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="18dp"
+            android:background="@null"
+            android:onClick="onClick"
+            app:srcCompat="@drawable/playbutton1" />
 
         <ImageButton
             android:id="@+id/optionsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/optionsbutton1"
-            android:background="@null"
-            android:layout_marginBottom="122dp"
+            android:layout_alignEnd="@+id/playBtn"
             android:layout_alignParentBottom="true"
             android:layout_alignRight="@+id/playBtn"
-            android:layout_alignEnd="@+id/playBtn" />
+            android:layout_marginBottom="122dp"
+            android:background="@null"
+            app:srcCompat="@drawable/optionsbutton1" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

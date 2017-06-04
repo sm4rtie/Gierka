@@ -25,40 +25,52 @@
 
     <Button
         android:id="@+id/gameBtn3"
-        android:layout_width="383dp"
+        android:layout_width="360dp"
         android:layout_height="138dp"
         android:layout_marginBottom="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/mysz_przyciskgracz1"
+        android:background="@drawable/gamebutton"
         android:onClick="onClick"
+        android:text="Widzisz smutną minkę?"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteY="429dp"
-        tools:layout_editor_absoluteX="-4dp" />
+        app:layout_constraintVertical_bias="0.997"
+        android:textSize="25sp"
+        android:textColor="@color/white"/>
 
     <TextView
         android:id="@+id/countdownTxt"
         android:layout_width="143dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="19dp"
+        android:layout_height="43dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:layout_marginTop="33dp"
+        android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/gameImg3"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.091"
-        tools:textColor="@color/white"
+        tools:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/anscheckTxt"
+        android:layout_width="140dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="33dp"
         android:textColor="@color/white"
-        app:layout_constraintHorizontal_bias="0.502" />
+        android:textSize="30sp"
+        app:layout_constraintHorizontal_bias="0.035"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

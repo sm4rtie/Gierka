@@ -2,6 +2,7 @@ package com.example.maj.gierka;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,16 +17,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MyszActivity extends AppCompatActivity implements View.OnClickListener{
-    private Button gameBtn;
+public class LodyActivity extends AppCompatActivity implements View.OnClickListener{
+    private Button gameBtn5;
     private TextView countdownTxt;
     private TextView anscheckTxt;
-    private ImageView gameImage;
+    private ImageView gameImg5;
     private String answer;
     private long time;
     private Class gp;
     CountDownTimer cTimer = null;
     private int point;
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +35,17 @@ public class MyszActivity extends AppCompatActivity implements View.OnClickListe
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_mysz_activity);
+        setContentView(R.layout.activity_lody_activity);
 
-        gameBtn = (Button) findViewById(R.id.gameBtn);
+        gameBtn5 = (Button) findViewById(R.id.gameBtn5);
         countdownTxt = (TextView) findViewById(R.id.countdownTxt);
         countdownTxt.setGravity(Gravity.CENTER);
         anscheckTxt = (TextView) findViewById(R.id.anscheckTxt);
         anscheckTxt.setGravity(Gravity.CENTER);
-        gameImage = (ImageView) findViewById(R.id.gameImg);
-       setScreen();
+        gameImg5 = (ImageView) findViewById(R.id.gameImg5);
+        setScreen();
     }
+
     public int checkAnsw(){
         //int point;
         if(answer.equalsIgnoreCase("tak")){
@@ -54,6 +57,7 @@ public class MyszActivity extends AppCompatActivity implements View.OnClickListe
             point=0;
             anscheckTxt.setText("Źle!");
             setScreen();
+
         }
         return point;
     }
@@ -63,19 +67,17 @@ public class MyszActivity extends AppCompatActivity implements View.OnClickListe
         cancelTimer();
         checkAnsw();
     }
-
     public void openActivity(Class class_) {
         Intent intent = new Intent(getApplicationContext(), class_);
         startActivity(intent);
     }
-
     public void setScreen(){
-       startTimer();
+        startTimer();
         Random rand = new Random();
-        Mysz mysz = new Mysz(this);
-        answer = mysz.generateQuestion();
-        int nr =  mysz.getResID();
-        gameImage.setImageResource(nr);
+        Lody lody = new Lody(this);
+        answer = lody.generateQuestion();
+        int nr =  lody.getResID();
+        gameImg5.setImageResource(nr);
     }
 
     void startTimer() {
@@ -83,8 +85,8 @@ public class MyszActivity extends AppCompatActivity implements View.OnClickListe
             public void onTick(long millisUntilFinished) {
                 countdownTxt.setText(" " + millisUntilFinished / 1000);
                 time = 6000 - millisUntilFinished;
-
             }
+
             public void onFinish() {
                 cancelTimer();
                 setScreen();

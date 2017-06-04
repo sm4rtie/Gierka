@@ -24,11 +24,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".Game" />
+        <activity android:name=".Options" />
         <activity android:name=".MyszActivity" />
         <activity android:name=".MinkaActivity" />
         <activity android:name=".KolkaActivity" />
         <activity android:name=".AlfabetActivity" />
-        <activity android:name=".BluetoothDiscovery"></activity>
+        <activity android:name=".Kolory" />
+        <activity android:name=".LodyActivity" />
+        <activity android:name=".RownaniaActivity" />
+        <activity android:name=".OrtoActivity" />
+        <activity android:name=".BluetoothDiscovery"/>
     </application>
 
 </manifest>

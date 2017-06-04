@@ -32,9 +32,13 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="37dp"
+            android:text="Volume"
             android:layout_alignBottom="@+id/seekBar"
-            android:layout_marginBottom="38dp"
-            android:text="Volume" />
+            android:layout_toLeftOf="@+id/backBtn"
+            android:layout_toStartOf="@+id/backBtn"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 </LinearLayout>
