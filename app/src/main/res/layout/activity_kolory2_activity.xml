@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/gameImg8"
+            android:id="@+id/gameImg9"
             android:layout_width="134dp"
             android:layout_height="135dp"
             android:layout_marginBottom="8dp"
@@ -30,12 +30,12 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="33dp"
+            android:textColor="@color/white"
             android:textSize="30sp"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/white" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/anscheckTxt"
@@ -44,16 +44,16 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="33dp"
+            android:textColor="@color/white"
             android:textSize="30sp"
             android:visibility="visible"
             app:layout_constraintHorizontal_bias="0.035"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/white" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/gameBtn8"
+            android:id="@+id/gameBtn9"
             android:layout_width="360dp"
             android:layout_height="126dp"
             android:layout_marginBottom="0dp"
@@ -62,7 +62,7 @@
             android:layout_marginTop="465dp"
             android:background="@drawable/gamebutton"
             android:onClick="onClick"
-            android:text="Czy to jest kolor karmazynowy?"
+            android:text="Czy to jest kolor marengo?"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -72,4 +72,5 @@
             app:layout_constraintVertical_bias="1.0" />
 
     </android.support.constraint.ConstraintLayout>
+
 </LinearLayout>

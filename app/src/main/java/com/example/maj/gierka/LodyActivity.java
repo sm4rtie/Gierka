@@ -21,6 +21,7 @@ public class LodyActivity extends AppCompatActivity implements View.OnClickListe
     private Button gameBtn5;
     private TextView countdownTxt;
     private TextView anscheckTxt;
+    //private TextView pointTxt5;
     private ImageView gameImg5;
     private String answer;
     private long time;
@@ -42,6 +43,8 @@ public class LodyActivity extends AppCompatActivity implements View.OnClickListe
         countdownTxt.setGravity(Gravity.CENTER);
         anscheckTxt = (TextView) findViewById(R.id.anscheckTxt);
         anscheckTxt.setGravity(Gravity.CENTER);
+        //pointTxt5 = (TextView) findViewById(R.id.pointTxt5);
+        //pointTxt5.setGravity(Gravity.CENTER);
         gameImg5 = (ImageView) findViewById(R.id.gameImg5);
         setScreen();
     }
@@ -50,6 +53,7 @@ public class LodyActivity extends AppCompatActivity implements View.OnClickListe
         //int point;
         if(answer.equalsIgnoreCase("tak")){
             point = 1;
+            //pointTxt5.setText(Integer.toString(point) + " PKT");
             anscheckTxt.setText("Punkt!");
             gp = new GamePicker().getRandGame();
             openActivity(gp);

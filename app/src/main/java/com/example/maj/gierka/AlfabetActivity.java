@@ -20,6 +20,7 @@ public class AlfabetActivity extends AppCompatActivity implements View.OnClickLi
     private Button gameBtn4;
     private TextView countdownTxt;
     private TextView anscheckTxt;
+    //private TextView pointTxt4;
     private ImageView gameImage;
     private String answer;
     private long time;
@@ -41,6 +42,8 @@ public class AlfabetActivity extends AppCompatActivity implements View.OnClickLi
         countdownTxt.setGravity(Gravity.CENTER);
         anscheckTxt = (TextView) findViewById(R.id.anscheckTxt);
         anscheckTxt.setGravity(Gravity.CENTER);
+        //pointTxt4 = (TextView) findViewById(R.id.pointTxt4);
+        //pointTxt4.setGravity(Gravity.CENTER);
         gameImage = (ImageView) findViewById(R.id.gameImg4);
         setScreen();
 
@@ -52,6 +55,7 @@ public class AlfabetActivity extends AppCompatActivity implements View.OnClickLi
         //int point;
         if(answer.equalsIgnoreCase("tak")){
             point = 1;
+            //pointTxt4.setText(Integer.toString(point) + " PKT");
             anscheckTxt.setText("Punkt!");
             gp = new GamePicker().getRandGame();
             openActivity(gp);

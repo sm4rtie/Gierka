@@ -29,10 +29,12 @@
         <activity android:name=".MinkaActivity" />
         <activity android:name=".KolkaActivity" />
         <activity android:name=".AlfabetActivity" />
-        <activity android:name=".Kolory" />
+        <activity android:name=".KoloryActivity" />
+        <activity android:name=".Kolory2Activity" />
         <activity android:name=".LodyActivity" />
         <activity android:name=".RownaniaActivity" />
         <activity android:name=".OrtoActivity" />
+        <activity android:name=".PorownanieActivity" />
         <activity android:name=".BluetoothDiscovery"/>
     </application>
 

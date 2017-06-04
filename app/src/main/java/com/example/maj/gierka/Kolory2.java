@@ -12,20 +12,20 @@ import java.util.regex.Pattern;
  * Created by Maj on 2017-05-17.
  */
 
-public class Kolory extends ContextWrapper {
+public class Kolory2 extends ContextWrapper {
     Context context;
     private TypedArray imgs;
     private int resID;
     private String answer;
 
-    public Kolory(Context context) {
+    public Kolory2(Context context) {
         super(context);
         this.context = context;
-        setImgs(context.getResources().obtainTypedArray(R.array.kolory));
+        setImgs(context.getResources().obtainTypedArray(R.array.kolory2));
     }
 
     public String generateQuestion(){
-        setImgs(context.getResources().obtainTypedArray(R.array.kolory));
+        setImgs(context.getResources().obtainTypedArray(R.array.kolory2));
         Random rand = new Random();
         //losujemy obrazek
         int rndInt = rand.nextInt(getImgs().length()-1);

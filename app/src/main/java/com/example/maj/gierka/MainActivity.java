@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
     ImageButton optionsBtn;
     ImageButton playBtn;
     RelativeLayout relativeLayout;
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 clickButton.start();
             }
         });
-
     }
 
     @Override

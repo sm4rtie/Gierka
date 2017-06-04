@@ -2,7 +2,6 @@ package com.example.maj.gierka;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,8 +16,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class KoloryActivity extends AppCompatActivity implements View.OnClickListener{
-    private Button gameBtn8;
+public class PorownanieActivity extends AppCompatActivity implements View.OnClickListener{
+    private Button gameBtn10;
     private TextView countdownTxt;
     private TextView anscheckTxt;
     private ImageView gameImage;
@@ -27,7 +26,7 @@ public class KoloryActivity extends AppCompatActivity implements View.OnClickLis
     private Class gp;
     CountDownTimer cTimer = null;
     private int point;
-    TextView tv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +34,20 @@ public class KoloryActivity extends AppCompatActivity implements View.OnClickLis
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_kolory_activity);
+        setContentView(R.layout.activity_porownanie_activity);
 
-        gameBtn8 = (Button) findViewById(R.id.gameBtn8);
+        gameBtn10 = (Button) findViewById(R.id.gameBtn10);
         countdownTxt = (TextView) findViewById(R.id.countdownTxt);
         countdownTxt.setGravity(Gravity.CENTER);
         anscheckTxt = (TextView) findViewById(R.id.anscheckTxt);
         anscheckTxt.setGravity(Gravity.CENTER);
-        gameImage = (ImageView) findViewById(R.id.gameImg8);
+        gameImage = (ImageView) findViewById(R.id.gameImg10);
         setScreen();
-    }
 
+
+
+
+    }
     public int checkAnsw(){
         //int point;
         if(answer.equalsIgnoreCase("tak")){
@@ -67,16 +69,18 @@ public class KoloryActivity extends AppCompatActivity implements View.OnClickLis
         cancelTimer();
         checkAnsw();
     }
+
     public void openActivity(Class class_) {
         Intent intent = new Intent(getApplicationContext(), class_);
         startActivity(intent);
     }
+
     public void setScreen(){
         startTimer();
         Random rand = new Random();
-        Kolory kolory = new Kolory(this);
-        answer = kolory.generateQuestion();
-        int nr =  kolory.getResID();
+        Porownanie porownanie = new Porownanie(this);
+        answer = porownanie.generateQuestion();
+        int nr =  porownanie.getResID();
         gameImage.setImageResource(nr);
     }
 

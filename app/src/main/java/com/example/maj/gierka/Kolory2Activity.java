@@ -17,8 +17,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class KoloryActivity extends AppCompatActivity implements View.OnClickListener{
-    private Button gameBtn8;
+public class Kolory2Activity extends AppCompatActivity implements View.OnClickListener{
+    private Button gameBtn9;
     private TextView countdownTxt;
     private TextView anscheckTxt;
     private ImageView gameImage;
@@ -35,14 +35,14 @@ public class KoloryActivity extends AppCompatActivity implements View.OnClickLis
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_kolory_activity);
+        setContentView(R.layout.activity_kolory2_activity);
 
-        gameBtn8 = (Button) findViewById(R.id.gameBtn8);
+        gameBtn9 = (Button) findViewById(R.id.gameBtn9);
         countdownTxt = (TextView) findViewById(R.id.countdownTxt);
         countdownTxt.setGravity(Gravity.CENTER);
         anscheckTxt = (TextView) findViewById(R.id.anscheckTxt);
         anscheckTxt.setGravity(Gravity.CENTER);
-        gameImage = (ImageView) findViewById(R.id.gameImg8);
+        gameImage = (ImageView) findViewById(R.id.gameImg9);
         setScreen();
     }
 
@@ -74,9 +74,9 @@ public class KoloryActivity extends AppCompatActivity implements View.OnClickLis
     public void setScreen(){
         startTimer();
         Random rand = new Random();
-        Kolory kolory = new Kolory(this);
-        answer = kolory.generateQuestion();
-        int nr =  kolory.getResID();
+        Kolory2 kolory2 = new Kolory2(this);
+        answer = kolory2.generateQuestion();
+        int nr =  kolory2.getResID();
         gameImage.setImageResource(nr);
     }
 
