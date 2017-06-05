@@ -43,7 +43,6 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
     private StringBuffer mOutStringBuffer;
     private Class gp;
     private BluetoothDevice device;
-    private BluetoothService mService = null;
     //BluetoothConnectionService mBluetoothConnection;
     private static final UUID MY_UUID_INSECURE =
             UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -137,35 +136,9 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
     public void startBTConnection(BluetoothDevice device, UUID uuid){
         Log.d("MY_APP", "startBTConnection: Initializing RFCOM Bluetooth Connection.");
 
-        TestingBT.mBluetoothConnection.startClient(device,uuid);
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        // Don't forget to unregister the ACTION_FOUND receiver.
-        unregisterReceiver(mReceiver);
-        if (mService != null) {
-            mService.stop();
-        }
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        // Performing this check in onResume() covers the case in which BT was
-        // not enabled during onStart(), so we were paused to enable it...
-        // onResume() will be called when ACTION_REQUEST_ENABLE activity returns.
-        if (mService != null) {
-            // Only if the state is STATE_NONE, do we know that we haven't started already
-            if (mService.getState() == BluetoothService.STATE_NONE) {
-                // Start the Bluetooth chat services
-                mService.start();
-            }
-        }
-    }
 
     @Override
     public void onClick(View view) {
@@ -240,64 +213,9 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
         }
     };
 
-    private void connectDevice(BluetoothDevice device, boolean secure){//Intent data, boolean secure) {
-        // Get the device MAC address
-        String address = device.getAddress();
-        // Get the BluetoothDevice object
-        BluetoothDevice device2 = mBluetoothAdapter.getRemoteDevice(address);
-        // Attempt to connect to the device
-        mService.connect(device2, secure);
-    }
 
-    private final Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            //FragmentActivity activity = getActivity();
-            switch (msg.what) {
-                /**  case Constants.MESSAGE_STATE_CHANGE:
-                 switch (msg.arg1) {
-                 case BluetoothService.STATE_CONNECTED:
-                 setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));
-                 mConversationArrayAdapter.clear();
-                 break;
-                 case BluetoothChatService.STATE_CONNECTING:
-                 setStatus(R.string.title_connecting);
-                 break;
-                 case BluetoothChatService.STATE_LISTEN:
-                 case BluetoothChatService.STATE_NONE:
-                 setStatus(R.string.title_not_connected);
-                 break;
-                 }
-                 break;**/
-                case Constants.MESSAGE_WRITE:
-                    byte[] writeBuf = (byte[]) msg.obj;
-                    // construct a string from the buffer
-                    String writeMessage = new String(writeBuf);
-                    //mConversationArrayAdapter.add("Me:  " + writeMessage);
-                    break;
-                case Constants.MESSAGE_READ:
-                    byte[] readBuf = (byte[]) msg.obj;
-                    // construct a string from the valid bytes in the buffer
-                    String readMessage = new String(readBuf, 0, msg.arg1);
-                    //mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
-                    break;
-                case Constants.MESSAGE_DEVICE_NAME:
-                    // save the connected device's name
-                    /**mConnectedDeviceName = msg.getData().getString(Constants.DEVICE_NAME);
-                     if (null != activity) {
-                     Toast.makeText(activity, "Connected to "
-                     + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
-                     }**/
-                    break;
-                case Constants.MESSAGE_TOAST:
-                    /**if (null != activity) {
-                     Toast.makeText(activity, msg.getData().getString(Constants.TOAST),
-                     Toast.LENGTH_SHORT).show();
-                     }**/
-                    break;
-            }
-        }
-    };
+
+
 
     public BluetoothAdapter getmBluetoothAdapter() {
         return mBluetoothAdapter;
