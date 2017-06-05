@@ -30,7 +30,7 @@ BluetoothConnectionService mBluetoothConnection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent i = getIntent();
-        mBluetoothConnection = (BluetoothConnectionService) i.getSerializableExtra("BT");
+
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -39,7 +39,6 @@ BluetoothConnectionService mBluetoothConnection;
         gameBtn2 = (Button) findViewById(R.id.gameBtn2);
         countdownTxt = (TextView) findViewById(R.id.countdownTxt);
         gameImage = (ImageView) findViewById(R.id.gameImg2);
-mBluetoothConnection = new BluetoothConnectionService(getApplicationContext());
        /* Random rand = new Random();
         Mysz mysz = new Mysz(this);
         answer = mysz.generateQuestion();

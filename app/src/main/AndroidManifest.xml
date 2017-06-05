@@ -30,7 +30,9 @@
         <activity android:name=".AlfabetActivity" />
         <activity android:name=".KolkaActivity" />
         <activity android:name=".MinkaActivity" />
-        <activity android:name=".MyszActivity"></activity>
+        <activity android:name=".MyszActivity"/>
+        <activity android:name=".BluetoothSetup">
+        </activity>
     </application>
 
 </manifest>

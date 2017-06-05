@@ -44,7 +44,7 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
     private Class gp;
     private BluetoothDevice device;
     private BluetoothService mService = null;
-    BluetoothConnectionService mBluetoothConnection;
+    //BluetoothConnectionService mBluetoothConnection;
     private static final UUID MY_UUID_INSECURE =
             UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private Button playBtn;
@@ -101,10 +101,11 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
                 String s = foundDevicesListView.getItemAtPosition(i).toString();
                 //  device = (BluetoothDevice) foundDevicesListView.getItemAtPosition(i);
                 device = (BluetoothDevice) foundDevicesListView.getItemAtPosition(i);
+                BluetoothDev.mBluetoothDevice = device;
                 Boolean isBond;
                 if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) isBond = device.createBond();
-                mBluetoothConnection = new BluetoothConnectionService(getApplicationContext());
-                startConnection(); //BCS
+                //TestingBT.mBluetoothConnection = new BluetoothConnectionService(getApplicationContext());
+                //startConnection(); //BCS
 
 
                 //connectDevice(device, false);
@@ -136,7 +137,7 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
     public void startBTConnection(BluetoothDevice device, UUID uuid){
         Log.d("MY_APP", "startBTConnection: Initializing RFCOM Bluetooth Connection.");
 
-        mBluetoothConnection.startClient(device,uuid);
+        TestingBT.mBluetoothConnection.startClient(device,uuid);
 
     }
 
@@ -168,16 +169,16 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
+
         //setContentView(R.layout.activity_game);
-        byte[] bytes = "Hello".getBytes(Charset.defaultCharset());
+       /*byte[] bytes = "Hello".getBytes(Charset.defaultCharset());
         try {
-//            mBluetoothConnection.write(bytes);
+            TestingBT.mBluetoothConnection.write(bytes);
         }catch(NullPointerException e){
             e.printStackTrace();
-        }
+        }*/
 
-        Intent i=new Intent(getApplicationContext(),KolkaActivity.class);
-        i.putExtra("BT", mBluetoothConnection);
+        Intent i=new Intent(getApplicationContext(),BluetoothSetup.class);
         startActivity(i);
     }
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
