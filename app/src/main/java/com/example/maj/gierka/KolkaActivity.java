@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -24,10 +25,12 @@ public class KolkaActivity extends AppCompatActivity implements View.OnClickList
     private Class gp;
     CountDownTimer cTimer = null;
     private int point;
-
+BluetoothConnectionService mBluetoothConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent i = getIntent();
+        mBluetoothConnection = (BluetoothConnectionService) i.getSerializableExtra("BT");
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -36,7 +39,7 @@ public class KolkaActivity extends AppCompatActivity implements View.OnClickList
         gameBtn2 = (Button) findViewById(R.id.gameBtn2);
         countdownTxt = (TextView) findViewById(R.id.countdownTxt);
         gameImage = (ImageView) findViewById(R.id.gameImg2);
-
+mBluetoothConnection = new BluetoothConnectionService(getApplicationContext());
        /* Random rand = new Random();
         Mysz mysz = new Mysz(this);
         answer = mysz.generateQuestion();
@@ -74,6 +77,13 @@ public class KolkaActivity extends AppCompatActivity implements View.OnClickList
         //String buttonText = (String)((Button)view).getText().toString();
         cancelTimer();
         checkAnsw();
+        byte[] bytes = "Hello".getBytes(Charset.defaultCharset());
+        try {
+
+            mBluetoothConnection.write(bytes);
+        }catch(NullPointerException e){
+            e.printStackTrace();
+        }
     }
     public void openActivity(Class class_) {
         Intent intent = new Intent(getApplicationContext(), class_);

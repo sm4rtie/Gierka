@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
        // setContentView(R.layout.activity_game);
 
-        Intent i=new Intent(getApplicationContext(), gp);
+        Intent i=new Intent(getApplicationContext(), BluetoothDiscovery.class);
         startActivity(i);
     }
     public void openActivity(Class class_) {

@@ -5,12 +5,17 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
+import android.os.ParcelUuid;
 import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.nio.charset.Charset;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -18,13 +23,13 @@ import java.util.UUID;
  */
 
 
-public class BluetoothConnectionService {
+public class BluetoothConnectionService implements Serializable {
     private static final String TAG = "BluetoothConnectionServ";
 
     private static final String appName = "MYAPP";
 
     private static final UUID MY_UUID_INSECURE =
-            UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
+            UUID.fromString("00001115-0000-1000-8000-00805f9b34fb");
 
     private final BluetoothAdapter mBluetoothAdapter;
     Context mContext;
@@ -130,8 +135,18 @@ public class BluetoothConnectionService {
             try {
                 Log.d(TAG, "ConnectThread: Trying to create InsecureRfcommSocket using UUID: "
                         +MY_UUID_INSECURE );
-                tmp = mmDevice.createRfcommSocketToServiceRecord(deviceUUID);
+                //tmp = mmDevice.createRfcommSocketToServiceRecord(deviceUUID);
+                        tmp = mmDevice.createInsecureRfcommSocketToServiceRecord(deviceUUID);
+
             } catch (IOException e) {
+                /**try{
+                    Method createMethod = mmDevice.getClass().getMethod("createInsecureRfcommSocket", new Class[] { int.class });
+                    tmp = (BluetoothSocket)createMethod.invoke(mmDevice, 1);
+                }catch(NoSuchMethodException d){d.printStackTrace();} catch (InvocationTargetException e1) {
+                    e1.printStackTrace();
+                } catch (IllegalAccessException e1) {
+                    e1.printStackTrace();
+                }**/
                 Log.e(TAG, "ConnectThread: Could not create InsecureRfcommSocket " + e.getMessage());
             }
 
@@ -145,21 +160,64 @@ public class BluetoothConnectionService {
             try {
                 // This is a blocking call and will only return on a
                 // successful connection or an exception
+            /**   ParcelUuid[] supportedUuids = mmDevice.getUuids();
+                for(ParcelUuid u: supportedUuids) {
+                    System.out.println(u.toString());
+                }**/
+               // mmSocket.connect();
+                //final Method  m = mmDevice.getClass().getMethod("createInsecureRfcommSocketToServiceRecord", new Class[] { UUID.class });
+                //mmSocket = (BluetoothSocket) m.invoke(mmDevice, MY_UUID_INSECURE);
                 mmSocket.connect();
-
                 Log.d(TAG, "run: ConnectThread connected.");
-            } catch (IOException e) {
+            } catch (Exception e) {
                 // Close the socket
+                Class<?> clazz = tmp.getRemoteDevice().getClass();
+                Class<?>[] paramTypes = new Class<?>[] {Integer.TYPE};
+
+                Method m = null;
                 try {
-                    mmSocket.close();
-                    Log.d(TAG, "run: Closed Socket.");
-                } catch (IOException e1) {
-                    Log.e(TAG, "mConnectThread: run: Unable to close connection in socket " + e1.getMessage());
+                    m = clazz.getMethod("createRfcommSocket", paramTypes);
+                } catch (NoSuchMethodException e1) {
+                    e1.printStackTrace();
                 }
+                Object[] params = new Object[] {Integer.valueOf(1)};
+
+                BluetoothSocket fallbackSocket = null;
+                try {
+                    Log.d(TAG, "run: trying fallback.");
+                    fallbackSocket = (BluetoothSocket) m.invoke(tmp.getRemoteDevice(), params);
+                    fallbackSocket.connect();
+                    mmSocket = fallbackSocket;
+                    Log.d(TAG, "run: fallback connected.");
+                } catch (IllegalAccessException e1) {
+                    e1.printStackTrace();
+                } catch (InvocationTargetException e1) {
+                    e1.printStackTrace();
+                }
+                 catch (IOException e1) {
+                     try {
+                         fallbackSocket.close();
+                         Log.d(TAG, "run: fallback closed.");
+                     } catch (IOException e2) {
+                         e2.printStackTrace();
+                     }
+                     e1.printStackTrace();
+                }
+                catch(Exception s) {
+                    try {
+                        mmSocket.close();
+                        Log.d(TAG, "run: Closed Socket.");
+                        s.printStackTrace();
+                    } catch (IOException e1) {
+                        Log.e(TAG, "mConnectThread: run: Unable to close connection in socket " + e1.getMessage());
+                    }
+                }
+                connected(fallbackSocket, mmDevice);
                 Log.d(TAG, "run: ConnectThread: Could not connect to UUID: " + MY_UUID_INSECURE );
             }
 
             //will talk about this in the 3rd video
+
             connected(mmSocket,mmDevice);
         }
         public void cancel() {
@@ -252,10 +310,16 @@ public class BluetoothConnectionService {
             while (true) {
                 // Read from the InputStream
                 try {
-                    bytes = mmInStream.read(buffer);
-                    String incomingMessage = new String(buffer, 0, bytes);
-                    //otrzymywanie wyniku przeciwnika
-                   // Log.d(TAG, "InputStream: " + incomingMessage);
+                    if(buffer[0]!=0){
+                        bytes = mmInStream.read(buffer);
+                        String incomingMessage = new String(buffer, 0, bytes);
+                        //otrzymywanie wyniku przeciwnika
+                        Log.d(TAG, "InputStream: " + incomingMessage);
+                    }
+                    else {
+                        buffer = "Hello".getBytes(Charset.defaultCharset());
+
+                    }
                 } catch (IOException e) {
                     //Log.e(TAG, "write: Error reading Input Stream. " + e.getMessage() );
                     break;
@@ -266,12 +330,12 @@ public class BluetoothConnectionService {
         //Call this from the main activity to send data to the remote device
         public void write(byte[] bytes) {
             String text = new String(bytes, Charset.defaultCharset());
-            //Log.d(TAG, "write: Writing to outputstream: " + text);
+            Log.d(TAG, "write: Writing to outputstream: " + text);
             try {
                 mmOutStream.write(bytes);
                 //wysylanie wyniku
             } catch (IOException e) {
-              //  Log.e(TAG, "write: Error writing to output stream. " + e.getMessage() );
+                Log.e(TAG, "write: Error writing to output stream. " + e.getMessage() );
             }
         }
 
@@ -284,7 +348,7 @@ public class BluetoothConnectionService {
     }
 
     private void connected(BluetoothSocket mmSocket, BluetoothDevice mmDevice) {
-       // Log.d(TAG, "connected: Starting.");
+        Log.d(TAG, "connected: Starting.");
 
         // Start the thread to manage the connection and perform transmissions
         mConnectedThread = new ConnectedThread2(mmSocket);
@@ -302,9 +366,11 @@ public class BluetoothConnectionService {
         ConnectedThread2 r;
 
         // Synchronize a copy of the ConnectedThread
-        //Log.d(TAG, "write: Write Called.");
+        Log.d(TAG, "write: Write Called." + out.toString());
         //perform the write
+
         mConnectedThread.write(out);
+        r = mConnectedThread;
     }
 
 }
