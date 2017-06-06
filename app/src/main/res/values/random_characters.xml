@@ -70,12 +70,12 @@
         <item>@drawable/wynik6_tak</item>
     </array>
     <array name="orto">
-        <item>@drawable/blad1_nie</item>
-        <item>@drawable/blad2_nie</item>
-        <item>@drawable/blad3_nie</item>
-        <item>@drawable/blad4_tak</item>
-        <item>@drawable/blad5_tak</item>
-        <item>@drawable/blad6_tak</item>
+        <item>@drawable/blad1_tak</item>
+        <item>@drawable/blad2_tak</item>
+        <item>@drawable/blad3_tak</item>
+        <item>@drawable/blad4_nie</item>
+        <item>@drawable/blad5_nie</item>
+        <item>@drawable/blad6_nie</item>
     </array>
     <array name="porownanie">
         <item>@drawable/zdj1_nie</item>
