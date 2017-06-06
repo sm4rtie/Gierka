@@ -36,6 +36,12 @@
         <activity android:name=".OrtoActivity" />
         <activity android:name=".PorownanieActivity" />
         <activity android:name=".BluetoothDiscovery"/>
+        <activity android:name=".ZapalkiActivity"/>
+        <activity android:name=".PandaActivity"/>
+        <activity android:name=".KrowaActivity"/>
+        <activity android:name=".LodzikiActivity"/>
+        <activity android:name=".SnajperActivity"/>
+        <activity android:name=".KwadratyActivity"/>
     </application>
 
 </manifest>

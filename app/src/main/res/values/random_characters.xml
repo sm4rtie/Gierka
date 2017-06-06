@@ -82,4 +82,38 @@
         <item>@drawable/zdj2_tak</item>
         <item>@drawable/zdj3_nie</item>
     </array>
+    <array name="zapalki">
+        <item>@drawable/zapalki1_tak</item>
+        <item>@drawable/zapalki2_tak</item>
+        <item>@drawable/zapalki3_nie</item>
+        <item>@drawable/zapalki4_nie</item>
+    </array>
+    <array name="panda">
+        <item>@drawable/panda1_nie</item>
+        <item>@drawable/panda2_tak</item>
+        <item>@drawable/panda3_nie</item>
+    </array>
+    <array name="krowa">
+        <item>@drawable/krowa1_tak</item>
+        <item>@drawable/krowa2_nie</item>
+        <item>@drawable/krowa3_nie</item>
+        <item>@drawable/krowa4_tak</item>
+    </array>
+    <array name="snajper">
+        <item>@drawable/snajper1_tak</item>
+        <item>@drawable/snajper2_tak</item>
+        <item>@drawable/snajper3_nie</item>
+        <item>@drawable/snajper4_nie</item>
+    </array>
+    <array name="kwadraty">
+        <item>@drawable/kwadraty1_tak</item>
+        <item>@drawable/kwadraty2_nie</item>
+        <item>@drawable/kwadraty3_nie</item>
+        <item>@drawable/kwadraty4_nie</item>
+    </array>
+    <array name="lodziki">
+        <item>@drawable/lody1_nie</item>
+        <item>@drawable/lody2_tak</item>
+        <item>@drawable/lody3_nie</item>
+    </array>
 </resources>
