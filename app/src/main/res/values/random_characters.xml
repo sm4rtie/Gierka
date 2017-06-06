@@ -1,11 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <array name="apptour">
+    <array name="characters">
         <item>@drawable/monica_geller</item>
         <item>@drawable/rachel_green</item>
         <item>@drawable/phoebe_buffay</item>
         <item>@drawable/ross_geller</item>
     </array>
-
+    <array name="lody">
+        <item>@drawable/minki1_nie</item>
+        <item>@drawable/minki2_nie</item>
+        <item>@drawable/minki3_nie</item>
+        <item>@drawable/minki4_nie</item>
+        <item>@drawable/minki5_nie</item>
+        <item>@drawable/minki6_nie</item>
+        <item>@drawable/minki7_tak</item>
+        <item>@drawable/minki8_tak</item>
+        <item>@drawable/minki9_tak</item>
+        <item>@drawable/minki10_tak</item>
+    </array>
+    <array name="mysz_i_ser">
+        <item>@drawable/mysz1_nie</item>
+        <item>@drawable/mysz2_nie</item>
+        <item>@drawable/mysz3_nie</item>
+        <item>@drawable/mysz4_nie</item>
+        <item>@drawable/mysz5_nie</item>
+        <item>@drawable/mysz6_nie</item>
+        <item>@drawable/mysz7_tak</item>
+        <item>@drawable/mysz8_tak</item>
+    </array>
+    <array name="kolka">
+        <item>@drawable/kolka1_tak</item>
+        <item>@drawable/kolka2_tak</item>
+        <item>@drawable/kolka3_tak</item>
+        <item>@drawable/kolka4_nie</item>
+        <item>@drawable/kolka5_nie</item>
+        <item>@drawable/kolka6_nie</item>
+    </array>
+    <array name="minka">
+        <item>@drawable/minka1_tak</item>
+        <item>@drawable/minka2_nie</item>
+        <item>@drawable/minka3_nie</item>
+        <item>@drawable/minka4_tak</item>
+        <item>@drawable/minka5_tak</item>
+        <item>@drawable/minka6_nie</item>
+    </array>
+    <array name="alfabet">
+        <item>@drawable/alfabet1_tak</item>
+        <item>@drawable/alfabet2_nie</item>
+        <item>@drawable/alfabet3_nie</item>
+        <item>@drawable/alfabet4_nie</item>
+    </array>
+    <array name="kolory">
+        <item>@drawable/kolor1_tak</item>
+        <item>@drawable/kolor2_nie</item>
+        <item>@drawable/kolor3_nie</item>
+    </array>
+    <array name="kolory2">
+        <item>@drawable/kolorek1_nie</item>
+        <item>@drawable/kolorek2_tak</item>
+        <item>@drawable/kolorek3_nie</item>
+    </array>
+    <array name="rownania">
+        <item>@drawable/wynik1_nie</item>
+        <item>@drawable/wynik2_nie</item>
+        <item>@drawable/wynik3_nie</item>
+        <item>@drawable/wynik4_tak</item>
+        <item>@drawable/wynik5_tak</item>
+        <item>@drawable/wynik6_tak</item>
+    </array>
+    <array name="orto">
+        <item>@drawable/blad1_tak</item>
+        <item>@drawable/blad2_tak</item>
+        <item>@drawable/blad3_tak</item>
+        <item>@drawable/blad4_nie</item>
+        <item>@drawable/blad5_nie</item>
+        <item>@drawable/blad6_nie</item>
+    </array>
+    <array name="porownanie">
+        <item>@drawable/zdj1_nie</item>
+        <item>@drawable/zdj2_tak</item>
+        <item>@drawable/zdj3_nie</item>
+    </array>
+    <array name="zapalki">
+        <item>@drawable/zapalki1_tak</item>
+        <item>@drawable/zapalki2_tak</item>
+        <item>@drawable/zapalki3_nie</item>
+        <item>@drawable/zapalki4_nie</item>
+    </array>
+    <array name="panda">
+        <item>@drawable/panda1_nie</item>
+        <item>@drawable/panda2_tak</item>
+        <item>@drawable/panda3_nie</item>
+    </array>
+    <array name="krowa">
+        <item>@drawable/krowa1_tak</item>
+        <item>@drawable/krowa2_nie</item>
+        <item>@drawable/krowa3_nie</item>
+        <item>@drawable/krowa4_tak</item>
+    </array>
+    <array name="snajper">
+        <item>@drawable/snajper1_tak</item>
+        <item>@drawable/snajper2_tak</item>
+        <item>@drawable/snajper3_nie</item>
+        <item>@drawable/snajper4_nie</item>
+    </array>
+    <array name="kwadraty">
+        <item>@drawable/kwadraty1_tak</item>
+        <item>@drawable/kwadraty2_nie</item>
+        <item>@drawable/kwadraty3_nie</item>
+        <item>@drawable/kwadraty4_nie</item>
+    </array>
+    <array name="lodziki">
+        <item>@drawable/lody1_nie</item>
+        <item>@drawable/lody2_tak</item>
+        <item>@drawable/lody3_nie</item>
+    </array>
 </resources>
