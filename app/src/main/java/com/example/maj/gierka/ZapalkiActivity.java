@@ -20,6 +20,7 @@ public class ZapalkiActivity extends AppCompatActivity implements View.OnClickLi
     private Button gameBtn11;
     private TextView countdownTxt;
     private TextView anscheckTxt;
+    private TextView scoreLabel;
     private ImageView gameImage;
     private String answer;
     private long time;
