@@ -1,7 +1,5 @@
 package com.example.maj.gierka;
 
-import android.content.Intent;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -11,18 +9,14 @@ import java.util.Random;
  */
 
 public class GamePicker {
-    result res = new result();
-    int point = res.getPoint();
-    private static ArrayList<Class> activities = new ArrayList<Class>(Arrays.asList(MyszActivity.class, MinkaActivity.class, KolkaActivity.class, AlfabetActivity.class, KoloryActivity.class, Kolory2Activity.class, LodyActivity.class, PorownanieActivity.class, RownaniaActivity.class, OrtoActivity.class));
+    private static ArrayList<Class> activities = new ArrayList<Class>(Arrays.asList( MyszActivity.class, MinkaActivity.class, KolkaActivity.class, AlfabetActivity.class, KoloryActivity.class, Kolory2Activity.class, LodyActivity.class, PorownanieActivity.class, RownaniaActivity.class, OrtoActivity.class, KrowaActivity.class, PandaActivity.class, ZapalkiActivity.class, LodzikiActivity.class, SnajperActivity.class, KwadratyActivity.class));
     private static Class randGame;
     public GamePicker(){
 
         if(getActivities().size() == 1){
             setRandGame(result.class);
             activities = new ArrayList<Class>(Arrays.asList(MyszActivity.class, MinkaActivity.class, KolkaActivity.class, AlfabetActivity.class, KoloryActivity.class, Kolory2Activity.class, LodyActivity.class, PorownanieActivity.class, RownaniaActivity.class, OrtoActivity.class));
-           // Intent intent = new Intent(getApplicationContext(), result.class);
-           // intent.putExtra("SCORE", point);
-           // startActivity(intent);
+
         }
         else {
             Class that = getActivities().get(new Random().nextInt(getActivities().size()));
