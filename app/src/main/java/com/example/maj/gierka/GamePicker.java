@@ -15,8 +15,7 @@ public class GamePicker {
 
         if(getActivities().size() == 1){
             setRandGame(result.class);
-            activities = new ArrayList<Class>(Arrays.asList(MyszActivity.class, MinkaActivity.class, KolkaActivity.class, AlfabetActivity.class, KoloryActivity.class, Kolory2Activity.class, LodyActivity.class, PorownanieActivity.class, RownaniaActivity.class, OrtoActivity.class));
-
+            activities = new ArrayList<Class>(Arrays.asList( MyszActivity.class, MinkaActivity.class, KolkaActivity.class, AlfabetActivity.class, KoloryActivity.class, Kolory2Activity.class, LodyActivity.class, PorownanieActivity.class, RownaniaActivity.class, OrtoActivity.class, KrowaActivity.class, PandaActivity.class, ZapalkiActivity.class, LodzikiActivity.class, SnajperActivity.class, KwadratyActivity.class));
         }
         else {
             Class that = getActivities().get(new Random().nextInt(getActivities().size()));

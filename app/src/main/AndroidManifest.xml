@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".Game" />
         <activity android:name=".Options" />
+        <activity android:name=".result" />
         <activity android:name=".MyszActivity" />
         <activity android:name=".MinkaActivity" />
         <activity android:name=".KolkaActivity" />
