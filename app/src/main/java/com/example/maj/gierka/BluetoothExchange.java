@@ -40,6 +40,7 @@ public class BluetoothExchange {
 
 
     private ConnectedThread mConnectedThread;
+    public static boolean isConnected;
 
     public BluetoothExchange(Context context) {
         mContext = context;
@@ -152,17 +153,28 @@ public class BluetoothExchange {
                 mmSocket.connect();
 
                 Log.d(TAG, "run: ConnectThread connected.");
+                isConnected = true;
             } catch (IOException e) {
                 // Close the socket
                 try {
                     mmSocket.close();
                     Log.d(TAG, "run: Closed Socket.");
+                    isConnected = false;
+                    Log.d(TAG, "run: Trying to connect again.");
+                    mmSocket.connect();
                 } catch (IOException e1) {
                     Log.e(TAG, "mConnectThread: run: Unable to close connection in socket " + e1.getMessage());
+                    try {
+                        mmSocket.close();
+                    } catch (IOException e2) {
+                        e2.printStackTrace();
+                    }
                 }
+               // if(!isConnected) { startClient(BluetoothDev.mBluetoothDevice, MY_UUID_INSECURE); isConnected = true; }
+
                 Log.d(TAG, "run: ConnectThread: Could not connect to UUID: " + MY_UUID_INSECURE );
             }
-
+            //if(!isConnected) { run(); isConnected = true; }
             //will talk about this in the 3rd video
             connected(mmSocket,mmDevice);
         }
@@ -237,24 +249,37 @@ public class BluetoothExchange {
             mmOutStream = tmpOut;
         }
 
-        public void run(){
+        public void run() {
             byte[] buffer = new byte[1024];  // buffer store for the stream
 
             int bytes; // bytes returned from read()
 
             // Keep listening to the InputStream until an exception occurs
-            while (true) {
-                // Read from the InputStream
+            //if (mmSocket.isConnected()){
+                while (true) {
+                    // Read from the InputStream
+                    try {
+                        bytes = mmInStream.read(buffer);
+                        String incomingMessage = new String(buffer, 0, bytes);
+                        Log.d(TAG, "InputStream: " + incomingMessage);
+                        BluetoothDev.oppScore = Integer.parseInt(incomingMessage);
+                    } catch (IOException e) {
+                        Log.e(TAG, "write: Error reading Input Stream. " + e.getMessage());
+                        break;
+                    }
+
+              //  }
+        }
+      /*  else {
                 try {
-                    bytes = mmInStream.read(buffer);
-                    String incomingMessage = new String(buffer, 0, bytes);
-                    Log.d(TAG, "InputStream: " + incomingMessage);
-                    BluetoothDev.oppScore = incomingMessage;
-                } catch (IOException e) {
-                    Log.e(TAG, "write: Error reading Input Stream. " + e.getMessage() );
-                    break;
+                    Thread.sleep(5000);
+                    startClient(BluetoothDev.mBluetoothDevice, MY_UUID_INSECURE);
+                    isConnected = true;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            }
+
+            }*/
         }
 
         //Call this from the main activity to send data to the remote device

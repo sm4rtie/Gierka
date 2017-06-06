@@ -43,6 +43,7 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
     private StringBuffer mOutStringBuffer;
     private Class gp;
     private BluetoothDevice device;
+
     //BluetoothConnectionService mBluetoothConnection;
     private static final UUID MY_UUID_INSECURE =
             UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -103,6 +104,8 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
                 BluetoothDev.mBluetoothDevice = device;
                 Boolean isBond;
                 if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) isBond = device.createBond();
+                //BluetoothDev.btExchange = new BluetoothExchange(getApplicationContext());
+                //BluetoothDev.btExchange.startClient(BluetoothDev.mBluetoothDevice, MY_UUID_INSECURE);
                 //TestingBT.mBluetoothConnection = new BluetoothConnectionService(getApplicationContext());
                 //startConnection(); //BCS
 
@@ -139,6 +142,19 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // Don't forget to unregister the ACTION_FOUND receiver.
+        unregisterReceiver(mReceiver);
+
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
 
     @Override
     public void onClick(View view) {
@@ -151,6 +167,13 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
             e.printStackTrace();
         }*/
 
+       // byte[] bytes = "START".getBytes(Charset.defaultCharset());
+      //  BluetoothDev.btExchange.write(bytes);
+     //   BluetoothDev.btExchange = new BluetoothExchange(getApplicationContext());
+       // BluetoothDev.btExchange.startClient(BluetoothDev.mBluetoothDevice, MY_UUID_INSECURE);
+      //  while(!BluetoothExchange.isConnected){
+      //      ;
+      //  }
         Intent i=new Intent(getApplicationContext(),BluetoothSetup.class);
         startActivity(i);
     }
@@ -212,8 +235,6 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
             }
         }
     };
-
-
 
 
 

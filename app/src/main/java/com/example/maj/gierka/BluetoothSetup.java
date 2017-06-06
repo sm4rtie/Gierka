@@ -38,13 +38,15 @@ public class BluetoothSetup extends AppCompatActivity implements View.OnClickLis
     private TextView address;
     private TextView score;
     private TextView oppScore;
+    private Button connected;
     private static final UUID MY_UUID_INSECURE =
             UUID.fromString("00001115-0000-1000-8000-00805f9b34fb");
 
     @Override
     public void onClick(View view) {
        // BluetoothDev.score = "10";
-        byte[] bytes = BluetoothDev.score.getBytes(Charset.defaultCharset());
+        byte[] bytes = Integer.toString(BluetoothDev.score + 1).getBytes(Charset.defaultCharset());
+        BluetoothDev.score += 1;
         BluetoothDev.btExchange.write(bytes);
 
        // mBtc.write(bytes);
@@ -54,15 +56,24 @@ public class BluetoothSetup extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth_setup);
-        BluetoothDev.btExchange = new BluetoothExchange(getApplicationContext());
-        BluetoothDev.btExchange.startClient(BluetoothDev.mBluetoothDevice, MY_UUID_INSECURE);
+        //ASUS: wybierz urzadzenie OK, INNY: wybierz urzadzenie OK, ASUS cofnij, wybierz ponownie
+       BluetoothDev.btExchange = new BluetoothExchange(getApplicationContext());
+       BluetoothDev.btExchange.startClient(BluetoothDev.mBluetoothDevice, MY_UUID_INSECURE);
+        connected = (Button) findViewById(R.id.button2);
+        /*if(!BluetoothExchange.isConnected) {
+            while (!BluetoothExchange.isConnected) {
+                connected.setEnabled(false);
+            }
+        }else connected.setEnabled(true);*/
+
         name = (TextView) findViewById(R.id.textView4);
         name.setText(BluetoothDev.mBluetoothDevice.getName());
         address = (TextView) findViewById(R.id.textView5);
         address.setText(BluetoothDev.mBluetoothDevice.getAddress());
         score = (TextView) findViewById(R.id.textView6);
-        score.setText(BluetoothDev.score);
+        score.setText(Integer.toString(BluetoothDev.score));
         oppScore = (TextView) findViewById(R.id.textView7);
+
        // oppScore.setText(BluetoothDev.oppScore);
     }
 }
