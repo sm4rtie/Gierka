@@ -174,6 +174,8 @@ public class BluetoothDiscovery extends AppCompatActivity implements View.OnClic
       //  while(!BluetoothExchange.isConnected){
       //      ;
       //  }
+        Toast.makeText(getApplicationContext(), "Czekanie na połączenie z " + BluetoothDev.mBluetoothDevice.getName() + "...", Toast.LENGTH_SHORT).show();
+
         Intent i=new Intent(getApplicationContext(),BluetoothSetup.class);
         startActivity(i);
     }

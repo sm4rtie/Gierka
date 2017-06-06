@@ -39,9 +39,10 @@ public class BluetoothSetup extends AppCompatActivity implements View.OnClickLis
     private TextView score;
     private TextView oppScore;
     private Button connected;
+    private Button go;
     private static final UUID MY_UUID_INSECURE =
             UUID.fromString("00001115-0000-1000-8000-00805f9b34fb");
-
+private Class gp;
     @Override
     public void onClick(View view) {
        // BluetoothDev.score = "10";
@@ -52,14 +53,23 @@ public class BluetoothSetup extends AppCompatActivity implements View.OnClickLis
        // mBtc.write(bytes);
     }
 
+    public void startGame(View view){
+        byte[] bytes = Integer.toString(BluetoothDev.score).getBytes(Charset.defaultCharset());
+        BluetoothDev.btExchange.write(bytes);
+        Intent i = new Intent(getApplicationContext(), KolkaActivity.class);
+        startActivity(i);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth_setup);
         //ASUS: wybierz urzadzenie OK, INNY: wybierz urzadzenie OK, ASUS cofnij, wybierz ponownie
-       BluetoothDev.btExchange = new BluetoothExchange(getApplicationContext());
+        gp = new GamePicker().getRandGame();
+       BluetoothDev.btExchange = new BluetoothExchange(this);
        BluetoothDev.btExchange.startClient(BluetoothDev.mBluetoothDevice, MY_UUID_INSECURE);
         connected = (Button) findViewById(R.id.button2);
+        go = (Button) findViewById(R.id.button3);
         /*if(!BluetoothExchange.isConnected) {
             while (!BluetoothExchange.isConnected) {
                 connected.setEnabled(false);

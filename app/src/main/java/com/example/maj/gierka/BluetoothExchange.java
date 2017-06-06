@@ -10,6 +10,7 @@ import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -160,17 +161,29 @@ public class BluetoothExchange {
                     mmSocket.close();
                     Log.d(TAG, "run: Closed Socket.");
                     isConnected = false;
-                    Log.d(TAG, "run: Trying to connect again.");
-                    mmSocket.connect();
+                    //Log.d(TAG, "run: Trying to connect again.");
+                    //mmSocket.connect();
                 } catch (IOException e1) {
                     Log.e(TAG, "mConnectThread: run: Unable to close connection in socket " + e1.getMessage());
+                    try {
+                        mmSocket.close();
+                    } catch (IOException e2) {
+                        Log.d(TAG, "unable to close second socket");
+                    }
+                }
+                try {
+                    Log.d(TAG, "fallback socket connecting");
+                    mmSocket.connect();
+                    Log.d(TAG, "fallback socket connected");
+                } catch (IOException e1) {
+                    e1.printStackTrace();
                     try {
                         mmSocket.close();
                     } catch (IOException e2) {
                         e2.printStackTrace();
                     }
                 }
-               // if(!isConnected) { startClient(BluetoothDev.mBluetoothDevice, MY_UUID_INSECURE); isConnected = true; }
+                // if(!isConnected) { startClient(BluetoothDev.mBluetoothDevice, MY_UUID_INSECURE); isConnected = true; }
 
                 Log.d(TAG, "run: ConnectThread: Could not connect to UUID: " + MY_UUID_INSECURE );
             }
@@ -178,6 +191,7 @@ public class BluetoothExchange {
             //will talk about this in the 3rd video
             connected(mmSocket,mmDevice);
         }
+
         public void cancel() {
             try {
                 Log.d(TAG, "cancel: Closing Client Socket.");
