@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -20,12 +22,15 @@ public class RownaniaActivity extends AppCompatActivity implements View.OnClickL
     private Button gameBtn6;
     private TextView countdownTxt;
     private TextView anscheckTxt;
+    private TextView scoreLabel;
     private ImageView gameImage;
     private String answer;
     private long time;
     private Class gp;
     CountDownTimer cTimer = null;
-    private int point;
+    result res = new result();
+    int point = res.getPoint();
+    private int tura;
 
 
     @Override
@@ -42,8 +47,10 @@ public class RownaniaActivity extends AppCompatActivity implements View.OnClickL
         anscheckTxt = (TextView) findViewById(R.id.anscheckTxt);
         anscheckTxt.setGravity(Gravity.CENTER);
         gameImage = (ImageView) findViewById(R.id.gameImg6);
+        scoreLabel = (TextView) findViewById(R.id.scoreLabel);
+        scoreLabel.setText("Score : " + point);
         setScreen();
-
+        tura++;
 
 
 
@@ -51,14 +58,22 @@ public class RownaniaActivity extends AppCompatActivity implements View.OnClickL
     public int checkAnsw(){
         //int point;
         if(answer.equalsIgnoreCase("tak")){
-            point = 1;
+            res.setPoint(point+1);
+            point += 1;
+            scoreLabel.setText("Score : " + point);
             anscheckTxt.setText("Punkt!");
             gp = new GamePicker().getRandGame();
             openActivity(gp);
         } else {
-            point=0;
             anscheckTxt.setText("Źle!");
-            setScreen();
+            if(tura>6){
+                gp = new GamePicker().getRandGame();
+                openActivity(gp);
+            }
+            else {
+                setScreen();
+                tura++;
+            }
 
         }
         return point;

@@ -21,13 +21,16 @@ public class KoloryActivity extends AppCompatActivity implements View.OnClickLis
     private Button gameBtn8;
     private TextView countdownTxt;
     private TextView anscheckTxt;
+    private TextView scoreLabel;
     private ImageView gameImage;
     private String answer;
     private long time;
     private Class gp;
     CountDownTimer cTimer = null;
-    private int point;
     TextView tv;
+    result res = new result();
+    int point = res.getPoint();
+    private int tura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,22 +46,37 @@ public class KoloryActivity extends AppCompatActivity implements View.OnClickLis
         anscheckTxt = (TextView) findViewById(R.id.anscheckTxt);
         anscheckTxt.setGravity(Gravity.CENTER);
         gameImage = (ImageView) findViewById(R.id.gameImg8);
+        scoreLabel = (TextView) findViewById(R.id.scoreLabel);
+        scoreLabel.setText("Score : " + point);
         setScreen();
+        tura++;
     }
 
     public int checkAnsw(){
         //int point;
         if(answer.equalsIgnoreCase("tak")){
-            point = 1;
+            res.setPoint(point+1);
+            point += 1;
+            scoreLabel.setText("Score : " + point);
             anscheckTxt.setText("Punkt!");
             gp = new GamePicker().getRandGame();
             openActivity(gp);
         } else {
-            point=0;
             anscheckTxt.setText("Źle!");
-            setScreen();
+            if(tura>6){
+                gp = new GamePicker().getRandGame();
+                openActivity(gp);
+            }
+            else {
+                setScreen();
+                tura++;
+            }
 
         }
+
+        //Intent intent = new Intent(getApplicationContext(), result.class);
+        //intent.putExtra("SCORE", point);
+        //startActivity(intent);
         return point;
     }
 

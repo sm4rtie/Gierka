@@ -20,14 +20,15 @@ public class AlfabetActivity extends AppCompatActivity implements View.OnClickLi
     private Button gameBtn4;
     private TextView countdownTxt;
     private TextView anscheckTxt;
-    //private TextView pointTxt4;
+    private TextView scoreLabel;
     private ImageView gameImage;
     private String answer;
     private long time;
     private Class gp;
     CountDownTimer cTimer = null;
-    private int point;
-
+    result res = new result();
+    int point = res.getPoint();
+    private int tura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,27 +43,34 @@ public class AlfabetActivity extends AppCompatActivity implements View.OnClickLi
         countdownTxt.setGravity(Gravity.CENTER);
         anscheckTxt = (TextView) findViewById(R.id.anscheckTxt);
         anscheckTxt.setGravity(Gravity.CENTER);
-        //pointTxt4 = (TextView) findViewById(R.id.pointTxt4);
-        //pointTxt4.setGravity(Gravity.CENTER);
         gameImage = (ImageView) findViewById(R.id.gameImg4);
+        scoreLabel = (TextView) findViewById(R.id.scoreLabel);
+        scoreLabel.setText("Score : " + point);
         setScreen();
+        tura++;
 
 
 
 
     }
     public int checkAnsw(){
-        //int point;
         if(answer.equalsIgnoreCase("tak")){
-            point = 1;
-            //pointTxt4.setText(Integer.toString(point) + " PKT");
+            res.setPoint(point+1);
+            point += 1;
+            scoreLabel.setText("Score : " + point);
             anscheckTxt.setText("Punkt!");
             gp = new GamePicker().getRandGame();
             openActivity(gp);
         } else {
-            point=0;
             anscheckTxt.setText("Źle!");
-            setScreen();
+            if(tura>6){
+                gp = new GamePicker().getRandGame();
+                openActivity(gp);
+            }
+            else {
+                setScreen();
+                tura++;
+            }
 
         }
         return point;

@@ -20,12 +20,15 @@ public class OrtoActivity extends AppCompatActivity implements View.OnClickListe
     private Button gameBtn7;
     private TextView countdownTxt;
     private TextView anscheckTxt;
+    private TextView scoreLabel;
     private ImageView gameImage;
     private String answer;
     private long time;
     private Class gp;
     CountDownTimer cTimer = null;
-    private int point;
+    result res = new result();
+    int point = res.getPoint();
+    private int tura;
 
 
     @Override
@@ -42,7 +45,10 @@ public class OrtoActivity extends AppCompatActivity implements View.OnClickListe
         anscheckTxt = (TextView) findViewById(R.id.anscheckTxt);
         anscheckTxt.setGravity(Gravity.CENTER);
         gameImage = (ImageView) findViewById(R.id.gameImg7);
+        scoreLabel = (TextView) findViewById(R.id.scoreLabel);
+        scoreLabel.setText("Score : " + point);
         setScreen();
+        tura++;
 
 
 
@@ -51,14 +57,22 @@ public class OrtoActivity extends AppCompatActivity implements View.OnClickListe
     public int checkAnsw(){
         //int point;
         if(answer.equalsIgnoreCase("tak")){
-            point = 1;
+            res.setPoint(point+1);
+            point += 1;
+            scoreLabel.setText("Score : " + point);
             anscheckTxt.setText("Punkt!");
             gp = new GamePicker().getRandGame();
             openActivity(gp);
         } else {
-            point=0;
             anscheckTxt.setText("Źle!");
-            setScreen();
+            if(tura>6){
+                gp = new GamePicker().getRandGame();
+                openActivity(gp);
+            }
+            else {
+                setScreen();
+                tura++;
+            }
 
         }
         return point;

@@ -21,14 +21,16 @@ public class LodyActivity extends AppCompatActivity implements View.OnClickListe
     private Button gameBtn5;
     private TextView countdownTxt;
     private TextView anscheckTxt;
-    //private TextView pointTxt5;
+    private TextView scoreLabel;
     private ImageView gameImg5;
     private String answer;
     private long time;
     private Class gp;
     CountDownTimer cTimer = null;
-    private int point;
+    result res = new result();
+    int point = res.getPoint();
     TextView tv;
+    private int tura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,24 +45,32 @@ public class LodyActivity extends AppCompatActivity implements View.OnClickListe
         countdownTxt.setGravity(Gravity.CENTER);
         anscheckTxt = (TextView) findViewById(R.id.anscheckTxt);
         anscheckTxt.setGravity(Gravity.CENTER);
-        //pointTxt5 = (TextView) findViewById(R.id.pointTxt5);
-        //pointTxt5.setGravity(Gravity.CENTER);
         gameImg5 = (ImageView) findViewById(R.id.gameImg5);
+        scoreLabel = (TextView) findViewById(R.id.scoreLabel);
+        scoreLabel.setText("Score : " + point);
         setScreen();
+        tura++;
     }
 
     public int checkAnsw(){
         //int point;
         if(answer.equalsIgnoreCase("tak")){
-            point = 1;
-            //pointTxt5.setText(Integer.toString(point) + " PKT");
+            res.setPoint(point+1);
+            point += 1;
+            scoreLabel.setText("Score : " + point);
             anscheckTxt.setText("Punkt!");
             gp = new GamePicker().getRandGame();
             openActivity(gp);
         } else {
-            point=0;
             anscheckTxt.setText("Źle!");
-            setScreen();
+            if(tura>6){
+                gp = new GamePicker().getRandGame();
+                openActivity(gp);
+            }
+            else {
+                setScreen();
+                tura++;
+            }
 
         }
         return point;
