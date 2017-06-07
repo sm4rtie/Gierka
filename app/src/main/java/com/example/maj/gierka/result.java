@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -38,8 +39,10 @@ public class result extends AppCompatActivity {
             BluetoothDev.btExchange.startClient(BluetoothDev.mBluetoothDevice, MY_UUID_INSECURE);
         }*/
         TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
+        scoreLabel.setGravity(Gravity.CENTER);
         //TextView highScoreLabel = (TextView) findViewById(R.id.highScoreLabel);
         TextView ktoWygral = (TextView) findViewById(R.id.ktoWygral);
+        ktoWygral.setGravity(Gravity.CENTER);
     if(opponentPoint>point){
         ktoWygral.setText("Przegrales! Wynik przeciwnika: " + opponentPoint);
     }

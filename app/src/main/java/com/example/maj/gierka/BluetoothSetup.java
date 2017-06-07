@@ -3,6 +3,7 @@ package com.example.maj.gierka;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -47,6 +48,7 @@ private Class gp;
         BluetoothDev.connectBt(getApplicationContext(), MY_UUID_INSECURE);
 
         name = (TextView) findViewById(R.id.oppName);
+        name.setGravity(Gravity.CENTER);
         name.setText(BluetoothDev.mBluetoothDevice.getName());
         go = (Button) findViewById(R.id.connectedGo);
 

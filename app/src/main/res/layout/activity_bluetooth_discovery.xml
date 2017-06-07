@@ -10,18 +10,14 @@
         android:id="@+id/foundDevicesListView"
         android:layout_width="224dp"
         android:layout_height="304dp"
-        android:layout_marginBottom="60dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="131dp"
         android:choiceMode="singleChoice"
         android:clickable="false"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.61"
-        app:layout_constraintHorizontal_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
@@ -33,19 +29,25 @@
         android:layout_marginTop="8dp"
         android:text="Choose device:"
         android:textColor="#ffffff"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/foundDevicesListView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.269"
+        android:gravity="center" />
 
     <Button
         android:id="@+id/startGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="360dp"
+        android:layout_height="126dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="24dp"
+        android:background="@drawable/gamebutton"
+        android:textSize="30sp"
+        android:textColor="@color/white"
         android:onClick="onClick"
         android:text="OK"
         app:layout_constraintBottom_toBottomOf="parent"
