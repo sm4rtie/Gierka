@@ -64,6 +64,9 @@ public class PorownanieActivity extends AppCompatActivity implements View.OnClic
             openActivity(gp);
         } else {
             anscheckTxt.setText("Źle!");
+            res.setPoint(point-1);
+            point -= 1;
+            scoreLabel.setText("Score : " + point);
             if(tura>6){
                 gp = new GamePicker().getRandGame();
                 openActivity(gp);
@@ -74,6 +77,7 @@ public class PorownanieActivity extends AppCompatActivity implements View.OnClic
             }
 
         }
+        BluetoothDev.writeResult(point);
         return point;
     }
 

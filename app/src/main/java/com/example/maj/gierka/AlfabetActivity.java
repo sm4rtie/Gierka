@@ -63,6 +63,9 @@ public class AlfabetActivity extends AppCompatActivity implements View.OnClickLi
             openActivity(gp);
         } else {
             anscheckTxt.setText("Źle!");
+            res.setPoint(point-1);
+            point -= 1;
+            scoreLabel.setText("Score : " + point);
             if(tura>6){
                 gp = new GamePicker().getRandGame();
                 openActivity(gp);
@@ -73,6 +76,7 @@ public class AlfabetActivity extends AppCompatActivity implements View.OnClickLi
             }
 
         }
+        BluetoothDev.writeResult(point);
         return point;
     }
 

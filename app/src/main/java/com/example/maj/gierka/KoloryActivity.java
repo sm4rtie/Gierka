@@ -63,6 +63,9 @@ public class KoloryActivity extends AppCompatActivity implements View.OnClickLis
             openActivity(gp);
         } else {
             anscheckTxt.setText("Źle!");
+            res.setPoint(point-1);
+            point -= 1;
+            scoreLabel.setText("Score : " + point);
             if(tura>6){
                 gp = new GamePicker().getRandGame();
                 openActivity(gp);
@@ -77,6 +80,7 @@ public class KoloryActivity extends AppCompatActivity implements View.OnClickLis
         //Intent intent = new Intent(getApplicationContext(), result.class);
         //intent.putExtra("SCORE", point);
         //startActivity(intent);
+        BluetoothDev.writeResult(point);
         return point;
     }
 

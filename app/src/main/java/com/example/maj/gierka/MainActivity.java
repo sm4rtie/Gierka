@@ -61,8 +61,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
 
         final MediaPlayer clickButton = MediaPlayer.create(this, R.raw.click);
-
-        Intent i=new Intent(getApplicationContext(),gp);
+        Intent i;
+        if (!BluetoothExchange.isConnected)  i = new Intent(getApplicationContext(),BluetoothDiscovery.class);
+        else i=new Intent(getApplicationContext(),gp);
         startActivity(i);
         clickButton.start();
     }

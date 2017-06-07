@@ -60,6 +60,9 @@ public class KrowaActivity extends AppCompatActivity implements View.OnClickList
 
         } else {
             anscheckTxt.setText("Źle!");
+            res.setPoint(point-1);
+            point -= 1;
+            scoreLabel.setText("Score : " + point);
             if(tura>6){
                 gp = new GamePicker().getRandGame();
                 openActivity(gp);
@@ -69,6 +72,7 @@ public class KrowaActivity extends AppCompatActivity implements View.OnClickList
                 tura++;
             }
         }
+        BluetoothDev.writeResult(point);
         return point;
     }
 

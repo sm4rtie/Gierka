@@ -60,6 +60,9 @@ public class LodzikiActivity extends AppCompatActivity implements View.OnClickLi
 
         } else {
             anscheckTxt.setText("Źle!");
+            res.setPoint(point-1);
+            point -= 1;
+            scoreLabel.setText("Score : " + point);
             if(tura>6){
                 gp = new GamePicker().getRandGame();
                 openActivity(gp);
@@ -69,6 +72,7 @@ public class LodzikiActivity extends AppCompatActivity implements View.OnClickLi
                 tura++;
             }
         }
+        BluetoothDev.writeResult(point);
         return point;
     }
 

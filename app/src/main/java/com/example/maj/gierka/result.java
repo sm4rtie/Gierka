@@ -11,9 +11,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import java.util.UUID;
+
 public class result extends AppCompatActivity {
 
     private static int point;
+    private static int opponentPoint;
+    private static final UUID MY_UUID_INSECURE =
+            UUID.fromString("00001115-0000-1000-8000-00805f9b34fb");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +28,23 @@ public class result extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_result);
 
+      /*  if (!BluetoothExchange.isConnected){
+            BluetoothDev.btExchange = new BluetoothExchange(this);
+            BluetoothDev.btExchange.startClient(BluetoothDev.mBluetoothDevice, MY_UUID_INSECURE);
+        }*/
         TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         //TextView highScoreLabel = (TextView) findViewById(R.id.highScoreLabel);
-
-        point = getIntent().getIntExtra("SCORE", 0);
+        TextView ktoWygral = (TextView) findViewById(R.id.ktoWygral);
+    if(opponentPoint>point){
+        ktoWygral.setText("Przegrales! Wynik przeciwnika: " + opponentPoint);
+    }
+        else if(opponentPoint<point){
+            ktoWygral.setText("Wygrales! Wynik przeciwnika: " + opponentPoint);
+        }
+        else if(opponentPoint==point){
+            ktoWygral.setText("Remis!");
+        }
+        //point = getIntent().getIntExtra("SCORE", 0);
         scoreLabel.setText("Score : " + point);
 /*
         SharedPreferences settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
@@ -58,5 +76,12 @@ public class result extends AppCompatActivity {
 
     public static void setPoint(int point) {
         result.point = point;
+    }
+    public static int getOpponentPoint() {
+        return opponentPoint;
+    }
+
+    public static void setOpponentPoint(int opponentPoint) {
+        result.opponentPoint = opponentPoint;
     }
 }
