@@ -11,12 +11,17 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+
 import java.util.UUID;
 
 public class result extends AppCompatActivity {
 
     private static int point;
     private static int opponentPoint;
+    private InterstitialAd interstitial;
     private static final UUID MY_UUID_INSECURE =
             UUID.fromString("00001115-0000-1000-8000-00805f9b34fb");
 
@@ -44,6 +49,18 @@ public class result extends AppCompatActivity {
         else if(opponentPoint==point){
             ktoWygral.setText("Remis!");
         }
+
+        interstitial = new InterstitialAd((this));
+        interstitial.setAdUnitId("ca-app-pub-0664570763252260/3326342124");
+        AdRequest adRequest = new AdRequest.Builder().build();
+        interstitial.loadAd(adRequest);
+        interstitial.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                displayInterstital();
+            }
+        });
+
         //point = getIntent().getIntExtra("SCORE", 0);
         scoreLabel.setText("Score : " + point);
 /*
@@ -63,6 +80,12 @@ public class result extends AppCompatActivity {
 
         */
 
+    }
+
+    public void displayInterstital(){
+        if(interstitial.isLoaded()){
+            interstitial.show();
+        }
     }
 
     public void tryAgain(View view) {
