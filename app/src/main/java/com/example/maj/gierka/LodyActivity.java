@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -31,6 +34,7 @@ public class LodyActivity extends AppCompatActivity implements View.OnClickListe
     int point = res.getPoint();
     TextView tv;
     private int tura;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,9 @@ public class LodyActivity extends AppCompatActivity implements View.OnClickListe
         gameImg5 = (ImageView) findViewById(R.id.gameImg5);
         scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         scoreLabel.setText("Score : " + point);
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         setScreen();
         tura++;
     }

@@ -30,7 +30,7 @@
         <Button
             android:id="@+id/gameBtn7"
             android:layout_width="360dp"
-            android:layout_height="138dp"
+            android:layout_height="114dp"
             android:layout_marginBottom="0dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
@@ -41,11 +41,11 @@
             android:textColor="@color/white"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.997" />
+            app:layout_constraintVertical_bias="0.997"
+            tools:layout_editor_absoluteY="452dp" />
 
         <TextView
             android:id="@+id/countdownTxt"
@@ -91,6 +91,18 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="52dp" />
 
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="-134dp"
+            app:adSize="BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gameImg"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/gameBtn7"></com.google.android.gms.ads.AdView>
 
     </android.support.constraint.ConstraintLayout>
 

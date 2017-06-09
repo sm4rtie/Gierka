@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -31,7 +34,7 @@ public class RownaniaActivity extends AppCompatActivity implements View.OnClickL
     result res = new result();
     int point = res.getPoint();
     private int tura;
-
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,9 @@ public class RownaniaActivity extends AppCompatActivity implements View.OnClickL
         gameImage = (ImageView) findViewById(R.id.gameImg6);
         scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         scoreLabel.setText("Score : " + point);
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         setScreen();
         tura++;
 
